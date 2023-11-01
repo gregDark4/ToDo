@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Roblox';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/DoorsDefinitiveRegularr.ttf');
+}
+
+body {
+  /* background-color: rgb(236, 236, 236); */
+  margin: 0;
+  padding: 0;
+  font-family: 'Roblox';
+}
+
+.App {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.some {
+  color: white;
+}
+
+.back {
+  color: white;
+}
