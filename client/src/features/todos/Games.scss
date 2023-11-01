@@ -1,0 +1,39 @@
+.games {
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    flex-wrap: wrap;
+  }
+}
+
+.game {
+  &__container {
+    width: 200px;
+    height: 350px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+  }
+  &__img {
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+      box-shadow: 2px 2px 15px 15px tomato;
+    }
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in;
+  }
+}
+
+// body {
+//   background-color: tomato;
+// }

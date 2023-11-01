@@ -1,0 +1,45 @@
+.nav {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    width: 80vw;
+  }
+  &__menu {
+    list-style: none;
+    margin: 0;
+    padding: 30px 0;
+    display: flex;
+    & li:not(:first-of-type) {
+      margin-left: 50px;
+    }
+    & li {
+      & a {
+        color: black;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          color: rgb(255, 255, 255);
+          text-shadow: red 2px 2px 4px;
+        }
+        &.active {
+          color: rgb(255, 0, 217);
+          text-shadow: red 2px 2px 4px;
+        }
+      }
+    }
+  }
+  &__logo {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}

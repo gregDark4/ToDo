@@ -1,0 +1,14 @@
+.main {
+  &__container {
+    & h1 {
+      font-family: 'Roblox';
+    }
+    text-align: center;
+  }
+  &__poster {
+    max-width: 500px;
+    border-radius: 5px;
+    margin-bottom: 100px;
+    box-shadow: 5px 5px 10px 0 black;
+  }
+}
