@@ -29,6 +29,19 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },
+      isData: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      level_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Levels",
+          key: "id",
+        },
+        onDelete: "cascade",
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

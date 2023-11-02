@@ -2,7 +2,8 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
-    static associate({ User }) {
+    static associate({ User, Level }) {
+      this.belongsTo(Level, { foreignKey: "level_id" });
       this.belongsTo(User, { foreignKey: "user_id" });
     }
   }
@@ -28,6 +29,19 @@ module.exports = (sequelize, DataTypes) => {
       status: {
         allowNull: false,
         type: DataTypes.BOOLEAN,
+      },
+      isData: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      level_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "Levels",
+          key: "id",
+        },
+        onDelete: "cascade",
       },
     },
     {
