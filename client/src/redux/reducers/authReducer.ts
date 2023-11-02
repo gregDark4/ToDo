@@ -8,7 +8,7 @@ export const initState: AuthState = {
 
 const authReducer = (state: AuthState = initState, action: Action): AuthState => {
   switch (action.type) {
-    case 'auth/checkPlayer':
+    case 'auth/checkUser':
       return {
         ...state,
         auth: action.payload,

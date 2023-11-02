@@ -7,7 +7,7 @@ import { useAppDispatch, type RootState } from '../../redux/store';
 import { fetchLogOut } from '../../App/api';
 
 const NavBar = (): JSX.Element => {
-  const player = useSelector((store: RootState) => store.auth.auth);
+  const user = useSelector((store: RootState) => store.auth.auth);
   const dispatch = useAppDispatch();
 
   const logOut = (): void => {
@@ -25,10 +25,7 @@ const NavBar = (): JSX.Element => {
           <li>
             <NavLink to="/todos">Todos</NavLink>
           </li>
-          <li>
-            <NavLink to="/games">Games</NavLink>
-          </li>
-          {!player ? (
+          {!user ? (
             <>
               <li>
                 <NavLink to="/auth/sign-in">Sign-in</NavLink>
