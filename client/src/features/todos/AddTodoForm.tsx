@@ -12,7 +12,7 @@ const AddTodoForm = (): JSX.Element => {
 
   const onHandleTodoAdd = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const res = await fetch('/api/users', {
+    const res = await fetch('/api/todos', {
       method: 'post',
       headers: {
         'Content-type': 'application/json',

@@ -26,7 +26,7 @@ const SignUp = (): JSX.Element => {
     const data: { message: string; user: User } = await res.json();
     if (data.message === 'success') {
       dispatch({ type: 'auth/sign-in', payload: data.user });
-      dispatch({ type: 'users/add', payload: data.user });
+      // dispatch({ type: 'users/add', payload: data.user });
       navigate('/');
     }
   };

@@ -13,7 +13,7 @@ export type Action =
   | { type: 'todos/load'; payload: Todo[] }
   | { type: 'todos/add'; payload: Todo }
   | { type: 'todos/update'; payload: TodoID }
-  | { type: 'todos/remove'; payload: TodoID };
+  | { type: 'todos/remove'; payload: TodoID }
   | { type: 'auth/checkUser'; payload: User }
   | { type: 'auth/logOut' }
   | { type: 'auth/sign-in'; payload: User };

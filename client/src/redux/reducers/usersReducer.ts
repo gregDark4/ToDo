@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/default-param-last */
-import type { Action, UsersState } from '../types';
+import type { Action, AuthState } from '../types';
 
-export const initState: UsersState = {
+export const initState: AuthState = {
   users: [],
 };
 
-const usersReducer = (state: UsersState = initState, action: Action): UsersState => {
+const usersReducer = (state: AuthState = initState, action: Action): AuthState => {
   switch (action.type) {
     case 'users/add':
       return {
         ...state,
-        todos: [...state.todos, action.payload],
+        users: [...state.users, action.payload],
       };
     default:
       return state;
