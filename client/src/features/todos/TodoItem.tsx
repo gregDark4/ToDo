@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/store';
 import type { Todo, TodoID } from './types';
-
 
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -22,12 +20,14 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
 
   return (
     <div className="todo__container">
-      <h2 className="todo__title">{todo.title}</h2>
-      <p>{todo.description}</p>
-      <Link to={`/todos/${todo.id}`}>Подробнее</Link>
+      <div className="todo_quest">
+        <h2 className="todo__title">{todo.title}</h2>
+        <p>{todo.description}</p>
+      </div>
       <label>
         Изменить
-        <form onSubmit ={onHandleTodoUPdate} />
+        <form onSubmit={onHandleTodoUPdate} />
+        <button type="submit">Delete</button>
       </label>
     </div>
   );

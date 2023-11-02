@@ -42,7 +42,7 @@ const NavBar = (): JSX.Element => {
             </li>
           )}
         </ul>
-        <img className="nav__logo" src={logo} alt="logo" />
+        {/* <img className="nav__logo" src={logo} alt="logo" /> */}
       </div>
       <Outlet />
     </>
