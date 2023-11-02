@@ -1,13 +1,14 @@
-require("dotenv").config();
+require("@babel/register");
 const express = require("express");
-const serverConfig = require("./config/serverConfig");
+const config = require("./config/serverConfig");
 
 const app = express();
 
-const PORT = 4000;
-serverConfig(app);
-const indexRoute = require("./routes/index.route");
+const indexRouter = require("./routes/index.routes");
 
-app.use("/", indexRoute);
+config(app);
 
-app.listen(PORT, () => console.log(`наш сервер пашет на ${PORT}  порту`));
+app.use("/", indexRouter);
+
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Сервер работает на ${PORT} порту`));
