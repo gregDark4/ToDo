@@ -18,6 +18,8 @@ function App(): JSX.Element {
 
   useEffect(() => {
     api.fetchTodos().then((data) => dispatch({ type: 'todos/load', payload: data }));
+    api.fetchTodos().then((data) => dispatch({ type: 'todos/update', payload: data }));
+    api.fetchTodos().then((data) => dispatch({ type: 'todos/remove', payload: data }));
     api.fetchCheckUser().then((data) => dispatch({ type: 'auth/checkUser', payload: data }));
   }, []);
 
