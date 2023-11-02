@@ -4,7 +4,7 @@ const config = require("./config/serverConfig");
 
 const app = express();
 
-const indexRouter = require("./routes/index.routes");
+const indexRouter = require("./routes/index.route");
 
 config(app);
 
