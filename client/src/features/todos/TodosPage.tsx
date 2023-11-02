@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Games.scss';
 import type { RootState } from '../../redux/store';
+import AddUserForm from './AddTodoForm';
 
 const TodosPage = (): JSX.Element => {
   const todos = useSelector((store: RootState) => store.todos.todos);
   const navigate = useNavigate();
   return (
-    <div className="games__container">
+    <div className="todos__container">
+      <AddUserForm />
       {todos.map((todo) => (
-        <ToDoItem key={todo.id} todo={todo} />
+        <TodoItem key={todo.id} todo={todo} />
       ))}
       <button type="button" onClick={() => navigate(-1)}>
         Назад{' '}
