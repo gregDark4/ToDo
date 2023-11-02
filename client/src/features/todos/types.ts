@@ -1,10 +1,11 @@
-export type Game = {
+export type Todo = {
   id: number;
   title: string;
-  img: string;
+  user_id: number;
   description: string;
-  adult: boolean;
-  player_id: number;
+  status: boolean;
+  isData: Date;
+  level_id: number;
 };
 
-export type GameID = Game['id'];
+export type TodoID = Todo['id'];

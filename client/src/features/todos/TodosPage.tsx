@@ -1,17 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import GameItem from './GameItem';
 import './Games.scss';
 import type { RootState } from '../../redux/store';
 
-const GamesPage = (): JSX.Element => {
-  const games = useSelector((store: RootState) => store.games.games);
+const TodosPage = (): JSX.Element => {
+  const todos = useSelector((store: RootState) => store.todos.todos);
   const navigate = useNavigate();
   return (
     <div className="games__container">
-      {games.map((game) => (
-        <GameItem key={game.id} game={game} />
+      {todos.map((todo) => (
+        <ToDoItem key={todo.id} todo={todo} />
       ))}
       <button type="button" onClick={() => navigate(-1)}>
         Назад{' '}
@@ -20,4 +19,4 @@ const GamesPage = (): JSX.Element => {
   );
 };
 
-export default GamesPage;
+export default TodosPage;

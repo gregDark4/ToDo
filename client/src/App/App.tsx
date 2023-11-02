@@ -17,14 +17,15 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    api.fetchTodos().then((data) => dispatch({ type: 'todos/load', payload: data }));
   }, []);
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<NavBar />}>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/players" element={<TodosPage />} />
+          {/* <Route path="/" element={<MainPage />} /> */}
+          <Route path="/" element={<TodosPage />} />
           <Route path="/auth/sign-in" element={<SignIn />} />
           <Route path="/auth/sign-up" element={<SignUp />} />
         </Route>

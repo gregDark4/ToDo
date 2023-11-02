@@ -1,26 +1,25 @@
 /* eslint-disable @typescript-eslint/default-param-last */
-import type { Action, GamesState } from '../types';
+import type { Action, TodosState } from '../types';
 
-export const initState: GamesState = {
-  games: [],
+export const initState: TodosState = {
+  todos: [],
 };
 
-const gamesReducer = (state: GamesState = initState, action: Action): GamesState => {
+const todosReducer = (state: TodosState = initState, action: Action): TodosState => {
   switch (action.type) {
-    case 'games/load':
+    case 'todos/load':
       return {
         ...state,
+        todos: action.payload,
       };
-    case 'games/update':
+    case 'todos/add':
       return {
         ...state,
-        games: state.games.map((game) =>
-          game.id === action.payload ? { ...game, adult: !game.adult } : game,
-        ),
+        todos: [...state.todos, action.payload],
       };
     default:
       return state;
   }
 };
 
-export default gamesReducer;
+export default todosReducer;
