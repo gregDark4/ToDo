@@ -1,10 +1,10 @@
-// import { combineReducers } from 'redux';
-// import gamesReducer from './gamesReducer';
-// import authReducer from './authReducer';
+import { combineReducers } from 'redux';
+import todosReducer from './todosReducer';
+import authReducer from './authReducer';
 
-// const rootReducer = combineReducers({
-//   games: gamesReducer,
+const rootReducer = combineReducers({
+  todos: todosReducer,
+  auth: authReducer,
+});
 
-// });
-
-// export default rootReducer;
+export default rootReducer;
