@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/store';
-import type { Player } from '../players/type';
+import type { User } from '../user/type';
 
 const SignIn = (): JSX.Element => {
   const [email, setEmail] = useState('');
@@ -23,9 +23,9 @@ const SignIn = (): JSX.Element => {
         password,
       }),
     });
-    const data: { message: string; player: Player } = await res.json();
+    const data: { message: string; user: User } = await res.json();
     if (data.message === 'success') {
-      dispatch({ type: 'auth/sign-in', payload: data.player });
+      dispatch({ type: 'auth/sign-in', payload: data.user });
       navigate('/');
     }
   };
