@@ -2,7 +2,6 @@
   font-family: 'Roblox';
   font-style: normal;
   font-weight: 700;
-  src: url('../assets/fonts/DoorsDefinitiveRegularr.ttf');
 }
 
 body {
@@ -36,4 +35,35 @@ body {
 .todo_quest {
   display: flex;
   justify-content: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.form-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.form-submit-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-submit-button:hover {
+  background-color: #45a049;
 }

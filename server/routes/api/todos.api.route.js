@@ -8,17 +8,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { title, description, status } = req.body;
+    const { title, description } = req.body;
     const todo = await Todo.create({
       title,
       description,
-      status,
-      // player_id: req.session.user_id,
+      user_id: req.session.user_id,
     });
-    res.json({
-      message: "success",
-      todo,
-    });
+    res.json(todo);
+    console.log(todo);
   } catch ({ message }) {
     res.json({ message });
   }
@@ -27,11 +24,8 @@ router.post("/", async (req, res) => {
 router.put("/:todoId", async (req, res) => {
   try {
     const { todoId } = req.params;
-    const { title, description } = req.body;
-    const [result] = await Todo.update(
-      { title, description },
-      { where: { id: todoId, user_id: req.session.user_id } }
-    );
+    const { status } = req.body;
+    const [result] = await Todo.update({ status }, { where: { id: todoId } });
     if (result > 0) {
       res.json({ message: "success" });
       return;

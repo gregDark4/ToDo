@@ -1,9 +1,10 @@
-const { Player } = require('../db/models');
+const { User } = require("../db/models");
+
 async function getUser(req, res, next) {
   if (req.session.user_id) {
-    const user = await Player.findOne({
+    const user = await User.findOne({
       where: { id: req.session.user_id },
-      attributes: { exclude: ['password'] },
+      attributes: { exclude: ["password"] },
     });
     res.locals.user = user;
   }

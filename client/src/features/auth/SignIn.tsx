@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import type { User } from '../users/type';
 import { useAppDispatch } from '../../redux/store';
-import type { User } from '../user/type';
 
 const SignIn = (): JSX.Element => {
   const [email, setEmail] = useState('');

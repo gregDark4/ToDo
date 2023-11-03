@@ -30,11 +30,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       isData: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE,
       },
       level_id: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Levels",

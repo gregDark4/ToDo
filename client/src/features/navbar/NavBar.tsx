@@ -2,7 +2,6 @@ import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './NavBar.scss';
-import logo from '../../assets/fox.png';
 import { useAppDispatch, type RootState } from '../../redux/store';
 import { fetchLogOut } from '../../App/api';
 
@@ -22,9 +21,9 @@ const NavBar = (): JSX.Element => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/todos">Todos</NavLink>
-          </li>
+          </li> */}
           {!user ? (
             <>
               <li>
