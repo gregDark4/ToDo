@@ -1,9 +1,11 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const apiTodosRouter = require("./api/todos.api.route");
-const authApiRouter = require("./api/auth.api.route");
+const apiTodosRouter = require('./api/todos.api.route');
+const authApiRouter = require('./api/auth.api.route');
+const apiEditRouter = require('./api/edit.api.route');
 
-router.use("/api/todos", apiTodosRouter);
-router.use("/api/auth", authApiRouter);
+router.use('/api/todos', apiTodosRouter);
+router.use('/api/auth', authApiRouter);
+router.use('/api/edit', apiEditRouter);
 
 module.exports = router;
