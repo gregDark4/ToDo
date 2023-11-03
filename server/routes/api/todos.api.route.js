@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
       user_id: req.session.user_id,
     });
     res.json(todo);
-    console.log(todo);
   } catch ({ message }) {
     res.json({ message });
   }

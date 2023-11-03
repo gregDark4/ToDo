@@ -26,7 +26,7 @@ module.exports = {
         onDelete: "cascade",
       },
       status: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.BOOLEAN,
       },
       isData: {

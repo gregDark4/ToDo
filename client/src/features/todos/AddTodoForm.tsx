@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../redux/store';
 
 const AddTodoForm = (): JSX.Element => {
   const [title, setTitle] = useState('');
-  const [desctiption, setDescription] = useState('');
+  const [description, setDescription] = useState('');
 
   const dispatch = useAppDispatch();
 
@@ -19,15 +19,15 @@ const AddTodoForm = (): JSX.Element => {
       },
       body: JSON.stringify({
         title,
-        desctiption,
+        description,
       }),
     });
     const data: Todo = await res.json();
-    // console.log(data);
+    console.log(data);
     dispatch({ type: 'todos/add', payload: data });
+    setTitle('');
+    setDescription('');
   };
-  // setTitle('');
-  // setDescription('');
   return (
     <div>
       <form className="form-container" onSubmit={onHandleTodoAdd}>
@@ -45,7 +45,7 @@ const AddTodoForm = (): JSX.Element => {
         <label htmlFor="description" className="form-label">
           Description
           <input
-            value={desctiption}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
             name="description"
             id="description"
