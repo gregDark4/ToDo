@@ -23,31 +23,39 @@ const AddTodoForm = (): JSX.Element => {
       }),
     });
     const data: Todo = await res.json();
+    // console.log(data);
     dispatch({ type: 'todos/add', payload: data });
   };
-
+  // setTitle('');
+  // setDescription('');
   return (
     <div>
-      <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onHandleTodoAdd}>
-        <label htmlFor="">
+      <form className="form-container" onSubmit={onHandleTodoAdd}>
+        <label htmlFor="title" className="form-label">
           Title
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             name="title"
+            id="title"
+            className="form-input"
             type="text"
           />
         </label>
-        <label htmlFor="">
+        <label htmlFor="description" className="form-label">
           Description
           <input
             value={desctiption}
             onChange={(e) => setDescription(e.target.value)}
             name="description"
+            id="description"
+            className="form-input"
             type="text"
           />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" className="form-submit-button">
+          Submit
+        </button>
       </form>
     </div>
   );

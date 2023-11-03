@@ -1,4 +1,4 @@
-import type { Todo } from '../features/todos/types';
+import type { Todo, TodoID } from '../features/todos/types';
 import type { User } from '../features/users/type';
 
 /* eslint-disable @typescript-eslint/no-unsafe-return */
@@ -16,4 +16,11 @@ export const fetchLogOut = async (): Promise<{ message: string }> => {
   const res = await fetch('/api/auth/logout');
   const data: { message: string } = await res.json();
   return data;
+};
+
+export const fetchTodoDelete = async (id: TodoID): Promise<{ message: string }> => {
+  const res = await fetch(`/api/todos/${id}`, {
+    method: 'delete',
+  });
+  return res.json();
 };

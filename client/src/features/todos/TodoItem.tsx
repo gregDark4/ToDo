@@ -1,34 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
 import type { Todo, TodoID } from './types';
+import { fetchTodoDelete } from '../../App/api';
 
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const [status, setStatus] = useState(todo.status ? 'completed' : 'notCompleted');
 
-  const onHandleTodoUPdate = async (id: TodoID): Promise<void> => {
-    const res = await fetch(`/api/games/${id}`, {
+  const onHandleChange = async (id: TodoID): Promise<void> => {
+    const res = await fetch(`/api/todos/${id}`, {
       method: 'put',
       headers: {
         'Content-type': 'application/json',
       },
+      body: JSON.stringify({ status: !todo.status }),
     });
     const data: { message: string } = await res.json();
-    if (data.message === 'successs') {
+    if (data.message === 'success') {
+      setStatus(todo.status ? 'notCompleted' : 'completed'); // Обновление статуса после успешного изменения на сервере
       dispatch({ type: 'todos/update', payload: id });
     }
   };
 
+  const onHandleDelete = (id: TodoID): void => {
+    fetchTodoDelete(id)
+      .then(() => dispatch({ type: 'todos/remove', payload: id }))
+      .catch(console.log);
+  };
   return (
-    <div className="todo__container">
-      <div className="todo_quest">
-        <h2 className="todo__title">{todo.title}</h2>
-        <p>{todo.description}</p>
-      </div>
+    <div className="game__container">
+      <h2 className="game__title">{todo.title}</h2>
+      <p>{todo.description}</p>
       <label>
-        Изменить
-        <form onSubmit={onHandleTodoUPdate} />
-        <button type="submit">Delete</button>
+        Status
+        <select value={status} onChange={() => onHandleChange(todo.id)}>
+          <option value="completed">Выполнено</option>
+          <option value="notCompleted">Не выполнено</option>
+        </select>
       </label>
+      <button onClick={() => onHandleDelete(todo.id)} type="button">
+        Delete
+      </button>
     </div>
   );
 };

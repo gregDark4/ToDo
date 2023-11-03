@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const { User } = require("../db/models");
+const { User } = require("../../db/models");
 
 router.post("/sign-up", async (req, res) => {
   let user;
@@ -23,7 +23,6 @@ router.post("/sign-up", async (req, res) => {
       res.json({ message: "Запolni!!" });
       return;
     }
-
     res.json({ message: "success", user });
   } catch ({ message }) {
     res.json({ message });
