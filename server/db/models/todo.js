@@ -27,15 +27,15 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "cascade",
       },
       status: {
-        allowNull: false,
+        // allowNull: false,
         type: DataTypes.BOOLEAN,
       },
       isData: {
-        allowNull: false,
+        // allowNull: false,
         type: DataTypes.DATE,
       },
       level_id: {
-        allowNull: false,
+        // allowNull: false,
         type: DataTypes.INTEGER,
         references: {
           model: "Levels",

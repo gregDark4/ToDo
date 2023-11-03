@@ -21,9 +21,6 @@ const NavBar = (): JSX.Element => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/todos">Todos</NavLink>
-          </li> */}
           {!user ? (
             <>
               <li>
@@ -34,11 +31,16 @@ const NavBar = (): JSX.Element => {
               </li>
             </>
           ) : (
-            <li>
-              <NavLink onClick={logOut} to="/">
-                logout{' '}
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink to="/todos">Todos</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={logOut} to="/">
+                  logout{' '}
+                </NavLink>
+              </li>
+            </>
           )}
         </ul>
         {/* <img className="nav__logo" src={logo} alt="logo" /> */}

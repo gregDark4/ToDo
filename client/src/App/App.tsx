@@ -10,6 +10,7 @@ import SignIn from '../features/auth/SignIn';
 import SignUp from '../features/auth/SignUp';
 import TodosPage from '../features/todos/TodosPage';
 import { useAppDispatch } from '../redux/store';
+import MainPage from '../features/main/MainPage';
 // import Memo from '../Samples/Memo/Memo';
 // import CallBe4ik from '../Samples/useCallback/Callbe4ik';
 
@@ -25,8 +26,8 @@ function App(): JSX.Element {
     <div className="App">
       <Routes>
         <Route path="/" element={<NavBar />}>
-          {/* <Route path="/" element={<MainPage />} /> */}
-          <Route path="/" element={<TodosPage />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/todos" element={<TodosPage />} />
           <Route path="/auth/sign-in" element={<SignIn />} />
           <Route path="/auth/sign-up" element={<SignUp />} />
         </Route>
