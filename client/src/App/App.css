@@ -84,3 +84,7 @@ body {
 
 .form-container {
 }
+
+.btn {
+  text-align: end;
+}

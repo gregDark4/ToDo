@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
 import type { Todo, TodoID } from './types';
-import { fetchTodoDelete, fetchTodoEdit } from '../../App/api';
+import { fetchTodoDelete } from '../../App/api';
 import Modal from '../Modal/Modal';
 
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
@@ -43,24 +43,21 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     >
       <h2 className="game__title">{todo.title}</h2>
       <a>{todo.description}</a>
-      <button onClick={() => setModalActive((prev) => !prev)} type="button">
-        Edit
-      <p>{todo.description}</p>
+      <br></br>
+      <br></br>
       <label>
         Выполнено
-        <input type="checkbox" checked={todo.status} onChange={() => onHandleChange(todo.id)} />
+        <input
+          className="btn"
+          type="checkbox"
+          checked={todo.status}
+          onChange={() => onHandleChange(todo.id)}
+        />
       </label>
-      <button onClick={() => onHandleDelete(todo.id)} type="button">
-        Delete
+      <button className="btn" onClick={() => setModalActive((prev) => !prev)} type="button">
+        Edit
       </button>
       <p>
-        <label>
-          Status
-          <select value={status} onChange={() => onHandleChange(todo.id)}>
-            <option value="completed">Выполнено</option>
-            <option value="notCompleted">Не выполнено</option>
-          </select>
-        </label>
         <button onClick={() => onHandleDelete(todo.id)} type="button">
           Delete
         </button>
