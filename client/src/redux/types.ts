@@ -16,4 +16,5 @@ export type Action =
   | { type: 'todos/remove'; payload: TodoID }
   | { type: 'auth/checkUser'; payload: User }
   | { type: 'auth/logOut' }
-  | { type: 'auth/sign-in'; payload: User };
+  | { type: 'auth/sign-in'; payload: User }
+  | { type: 'todos/edit'; payload: TodoID };
