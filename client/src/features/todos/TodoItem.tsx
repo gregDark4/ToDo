@@ -39,12 +39,17 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   return (
     <div
       className="game__container"
-      style={{ borderRadius: '8px', background: 'black', padding: '40px', marginBottom: '20px' }}
+      style={{
+        borderRadius: '8px',
+        background: 'rgba(0,0,0, 0.5',
+        padding: '40px',
+        marginBottom: '20px',
+      }}
     >
       <h2 className="game__title">{todo.title}</h2>
       <a>{todo.description}</a>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <label>
         Выполнено
         <input

@@ -17,18 +17,26 @@ const todosReducer = (state: TodosState = initState, action: Action): TodosState
         ...state,
         todos: [...state.todos, action.payload],
       };
-    case 'todos/update': {
+    case 'todos/update':
       return {
         ...state,
         todos: state.todos.map((todo) =>
           todo.id === action.payload ? { ...todo, status: !todo.status } : todo,
         ),
       };
-    }
     case 'todos/remove':
       return {
         ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+    case 'todos/edit':
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, title: todo.title, description: todo.description }
+            : todo,
+        ),
       };
     default:
       return state;

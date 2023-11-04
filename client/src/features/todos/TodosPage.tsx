@@ -8,7 +8,7 @@ import AddTodoForm from './AddTodoForm';
 const TodosPage = (): JSX.Element => {
   const [filter, setFilter] = useState('all');
   const todos = useSelector((store: RootState) => store.todos.todos);
-  const handleFilter = (status) => {
+  const handleFilter = (status): void => {
     setFilter(status);
   };
   // Фильтрация задач в зависимости от выбранного фильтра
@@ -20,9 +20,15 @@ const TodosPage = (): JSX.Element => {
       <div>
         <AddTodoForm />
         <div>
-          <button onClick={() => handleFilter('all')}>Все</button>
-          <button onClick={() => handleFilter('completed')}>Завершенные</button>
-          <button onClick={() => handleFilter('incomplete')}>Незавершенные</button>
+          <button type="button" onClick={() => handleFilter('all')}>
+            Все
+          </button>
+          <button type="button" onClick={() => handleFilter('completed')}>
+            Завершенные
+          </button>
+          <button type="button" onClick={() => handleFilter('incomplete')}>
+            Незавершенные
+          </button>
         </div>
       </div>
       {filteredTodos.map((todo) => (

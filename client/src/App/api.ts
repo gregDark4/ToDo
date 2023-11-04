@@ -18,12 +18,12 @@ export const fetchLogOut = async (): Promise<{ message: string }> => {
   return data;
 };
 
-export const fetchTodoEdit = async (id: TodoID): Promise<{ message: string }> => {
-  const res = await fetch(`/api/edit/${id}`, {
-    method: 'put',
-  });
-return res.json()
-};
+// export const fetchTodoEdit = async (id: TodoID): Promise<{ message: string }> => {
+//   const res = await fetch(`/api/edit/${id}`, {
+//     method: 'put',
+//   });
+// return res.json()
+// };
 export const fetchTodoDelete = async (id: TodoID): Promise<{ message: string }> => {
   const res = await fetch(`/api/todos/${id}`, {
     method: 'delete',
