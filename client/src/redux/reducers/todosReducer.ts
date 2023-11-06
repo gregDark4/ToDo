@@ -16,7 +16,7 @@ const todosReducer = (state: TodosState = initState, action: Action): TodosState
     case 'todos/add':
       return {
         ...state,
-        todos: [...state.todos, action.payload],
+        todos: [action.payload, ...state.todos],
       };
     case 'todos/update':
       return {
