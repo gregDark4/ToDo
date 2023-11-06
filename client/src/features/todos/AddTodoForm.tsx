@@ -20,6 +20,8 @@ const AddTodoForm = (): JSX.Element => {
       body: JSON.stringify({
         title,
         description,
+        status: false,
+        level_id: 1,
       }),
     });
     const data: Todo = await res.json();
