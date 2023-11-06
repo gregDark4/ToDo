@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import './Games.scss';
 import type { RootState } from '../../redux/store';
 import TodoItem from './TodoItem';
 import AddTodoForm from './AddTodoForm';
 
 const TodosPage = (): JSX.Element => {
   const [filter, setFilter] = useState('all');
+
   const [showBtn, setShowBtn] = useState(false);
 
   // const [prior, setPrior] = useState('all');
+
+  const todoss = useSelector((store: RootState) => store.todos.todos);
+  const sortedTodos = todoss.sort((todoA, todoB) => todoB.level_id - todoA.level_id);
+
   const todos = useSelector((store: RootState) => store.todos.todos);
   const handleFilter = (status: string): void => {
     setFilter(status);
   };
 
-  // const handlePrior = (level): void => {
-  //   setPrior(level);
-  // };
-
   const filteredTodos =
     filter === 'all' ? todos : todos.filter((todo) => todo.status === (filter === 'completed'));
-
-  // const sortedPrior =
-  //   prior === 'all' ? todos : todos.filter((todo) => todo.level_id === (prior === '1'));
 
   return (
     <div className="todo__container">
@@ -54,6 +51,9 @@ const TodosPage = (): JSX.Element => {
           </button>
         </div>
       </div>
+      {sortedTodos.map((todo) => (
+        <div key={todo.id} />
+      ))}
       {filteredTodos.map((todo) => (
         <TodoItem key={todo.id} todo={todo}/>
       ))}
@@ -62,23 +62,3 @@ const TodosPage = (): JSX.Element => {
 };
 
 export default TodosPage;
-
-// <div>
-// <select>
-//   <option value="all" onClick={() => handlePrior('all')}>
-//     all
-//   </option>
-//   <option value="1" onClick={() => handlePrior('1')}>
-//     low
-//   </option>
-//   <option value="2" onClick={() => handlePrior('2')}>
-//     middle
-//   </option>
-//   <option value="3" onClick={() => handlePrior('3')}>
-//     high
-//   </option>
-// </select>
-// {sortedPrior.map((todo) => (
-//   <TodoItem key={todo.id} todo={todo} />
-// ))}
-// </div>

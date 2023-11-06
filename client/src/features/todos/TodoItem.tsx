@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import type { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux';
+import { Calendar } from 'react-date-range';
+import type { RootState } from '../../redux/store';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useAppDispatch } from '../../redux/store';
 import type { Todo, TodoID } from './types';
 import { fetchTodoDelete } from '../../App/api';
@@ -10,10 +14,32 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [show, setShow] = useState(false);
   const [prior, setPrior] = useState('all');
-
   // const todos = useSelector((store: RootState) => store.todos.todos);
+
+  const [time, setTime] = useState<Date>();
+  const user = useSelector((store: RootState) => store.auth.auth);
+  const todos = useSelector((store: RootState) => store.todos.todos);
+
   const dispatch = useAppDispatch();
-  // const [status, setStatus] = useState(todo.status ? 'completed' : 'notCompleted');
+
+  const onHandleTime = async (id: TodoID): Promise<void> => {
+    const res = await fetch(`/api/time/${id}`, {
+      method: 'put',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ isData: time }),
+    });
+    const data: { message: string } = await res.json();
+    if (data.message === 'success') {
+      dispatch({ type: 'todos/time', payload: id });
+    }
+  };
+  const handleTime = (time: string): void => {
+    setTime(time);
+    // alert(time);
+    console.log(time);
+  };
 
   const onHandleChange = async (id: TodoID): Promise<void> => {
     const res = await fetch(`/api/todos/${id}`, {
@@ -25,7 +51,6 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
     });
     const data: { message: string } = await res.json();
     if (data.message === 'success') {
-      // setStatus(todo.status ? 'notCompleted' : 'completed');
       dispatch({ type: 'todos/update', payload: id });
     }
   };
@@ -53,8 +78,6 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
   const handlePrior = (level_id: string): void => {
     setPrior(level_id);
   };
-
-  // const sortedPrior = prior === 'all' ? todos : todos.filter((tod) => tod.level_id === prior);
 
   return (
     <div
@@ -84,14 +107,18 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
           onChange={() => onHandleChange(todo.id)}
         />
       </label>
-      <button className="btn" onClick={() => setModalActive((prev) => !prev)} type="button">
-        Edit
-      </button>
-      <p>
-        <button onClick={() => onHandleDelete(todo.id)} type="button">
-          Delete
-        </button>
-      </p>
+      {user && user.id === todo.user_id ? (
+        <>
+          <button className="btn" onClick={() => setModalActive((prev) => !prev)} type="button">
+            Edit
+          </button>
+          <p>
+            <button onClick={() => onHandleDelete(todo.id)} type="button">
+              Delete
+            </button>
+          </p>
+        </>
+      ) : null}
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
@@ -123,6 +150,12 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
         }}
       >
         Change Level
+      </button>
+      <div>
+        <Calendar time={new Date()} onChange={handleTime} />
+      </div>
+      <button onClick={() => onHandleTime(todo.id, time)} type="button">
+        Выбери дату
       </button>
     </div>
   );

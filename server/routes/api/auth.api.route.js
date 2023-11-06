@@ -15,12 +15,14 @@ router.post("/sign-up", async (req, res) => {
           password: hash,
         });
         req.session.user_id = user.id;
-      } else {
-        res.json({ message: "занyt!!" });
+      }
+      if (!email || !password) {
+        res.json({ message: "Заполните все поля" });
         return;
       }
-    } else {
-      res.json({ message: "Запolni!!" });
+    }
+    if (!email || !password) {
+      res.json({ message: "Заполните все поля" });
       return;
     }
     res.json({ message: "success", user });
