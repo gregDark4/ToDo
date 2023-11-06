@@ -25,14 +25,12 @@ const TodosPage = (): JSX.Element => {
     <div className="todo__container">
       <div>
         <div>
-
           {showBtn ? (
             <div id="add_form">
-              {' '}
-              <AddTodoForm setShowBtn={setShowBtn}/>
+              <AddTodoForm setShowBtn={setShowBtn} />
             </div>
           ) : (
-            <button type="button" id="add_task_btn" onClick={() => setShowBtn((prev)=>!prev)}>
+            <button type="button" id="add_task_btn" onClick={() => setShowBtn((prev) => !prev)}>
               +Add Task
             </button>
           )}
@@ -54,7 +52,7 @@ const TodosPage = (): JSX.Element => {
         <div key={todo.id} />
       ))}
       {filteredTodos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo}/>
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>
   );

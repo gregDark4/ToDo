@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Todo } = require("../../db/models");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const todos = await Todo.findAll();
   // {where: { user_id: req.session.user_id }}
   res.json(todos);
