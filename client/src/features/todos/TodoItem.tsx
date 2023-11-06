@@ -10,13 +10,16 @@ import type { Todo, TodoID } from './types';
 import { fetchTodoDelete } from '../../App/api';
 import Modal from '../Modal/Modal';
 
-const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
+const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [show, setShow] = useState(false);
   const [prior, setPrior] = useState('all');
+  // const todos = useSelector((store: RootState) => store.todos.todos);
+
   const [time, setTime] = useState<Date>();
   const user = useSelector((store: RootState) => store.auth.auth);
   const todos = useSelector((store: RootState) => store.todos.todos);
+
   const dispatch = useAppDispatch();
 
   const onHandleTime = async (id: TodoID): Promise<void> => {
@@ -86,12 +89,12 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         marginBottom: '20px',
       }}
     >
-      <section>
+      <div>
         <h2 className="game__title" onClick={() => setShow(!show)}>
           {todo.title}
         </h2>
         {show && <div id="description">{todo.description}</div>}
-      </section>
+      </div>
 
       <br />
       <br />
