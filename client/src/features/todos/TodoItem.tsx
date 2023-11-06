@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Calendar } from 'react-date-range';
 import type { RootState } from '../../redux/store';
@@ -10,34 +10,33 @@ import type { Todo, TodoID } from './types';
 import { fetchTodoDelete } from '../../App/api';
 import Modal from '../Modal/Modal';
 
-const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
+const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [show, setShow] = useState(false);
   const [prior, setPrior] = useState(todo.level_id);
-
-//   const [prior, setPrior] = useState('all');
-  // const todos = useSelector((store: RootState) => store.todos.todos);
   const [time, setTime] = useState<Date>();
-  const [date, setDate] = useState(todo.createdAt);
-  const [dateNow, setDateNow] = useState(todo.isData);
-  const [countdown, setCountdown] = useState(0);
+
+  // const [date, setDate] = useState(todo.createdAt);
+  // const [dateNow, setDateNow] = useState(todo.isData);
+  // const [countdown, setCountdown] = useState(0);
+
   const user = useSelector((store: RootState) => store.auth.auth);
-  const todos = useSelector((store: RootState) => store.todos.todos);
+  // const todos = useSelector((store: RootState) => store.todos.todos);
 
   const dispatch = useAppDispatch();
 
-  console.log(date);
-  console.log(dateNow);
+  // console.log(date);
+  // console.log(dateNow);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const timeDifference = Date.parse(dateNow) - Date.parse(date);
-      const secondsRemaining = Math.floor(timeDifference / 1000);
-      setCountdown(secondsRemaining);
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const timeDiff = Date.parse(dateNow) - Date.parse(date);
+  //     const seconds = Math.floor(timeDiff / 1000);
+  //     setCountdown(seconds);
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, [date, dateNow]);
+  //   return () => clearInterval(interval);
+  // }, [date, dateNow]);
 
   const onHandleTime = async (id: TodoID): Promise<void> => {
     const res = await fetch(`/api/time/${id}`, {
@@ -51,6 +50,8 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
     if (data.message === 'success') {
       dispatch({ type: 'todos/time', payload: id });
     }
+    console.log(data);
+    console.log(time);
   };
   const handleTime = (time: string): void => {
     setTime(time);
@@ -169,8 +170,9 @@ const TodoItem = ({ todo }: { todo: Todo}): JSX.Element => {
         Change Level
       </button>
       <div>
-        {/* <Calendar time={new Date()} onChange={handleTime} /> */}
-        <Calendar time={new Date()} onChange={() => handleTime} />
+        <Calendar time={new Date()} onChange={handleTime} />
+        {/* <Calendar time={new Date()} onChange={(e) => setTime(time)} /> */}
+        {/* <p>Countdown: {countdown} seconds</p> */}
       </div>
       <button onClick={() => onHandleTime(todo.id, time)} type="button">
         Выбери дату
