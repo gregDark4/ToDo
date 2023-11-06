@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import type { RootState } from '../../redux/store';
 import { useAppDispatch } from '../../redux/store';
 import type { Todo, TodoID } from './types';
 import { fetchTodoDelete } from '../../App/api';
@@ -7,6 +9,8 @@ import Modal from '../Modal/Modal';
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [show, setShow] = useState(false);
+  const [prior, setPrior] = useState('all');
+  // const todos = useSelector((store: RootState) => store.todos.todos);
   const dispatch = useAppDispatch();
   // const [status, setStatus] = useState(todo.status ? 'completed' : 'notCompleted');
 
@@ -25,17 +29,31 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     }
   };
 
-  // const onHandleEdit = (id: TodoID): void => {
-  //   fetchTodoEdit(id)
-  //     .then(() => dispatch({ type: 'todos/edit', payload: id }))
-  //     .catch(console.log);
-  // };
+  const onHandleLevel = async (id: TodoID): Promise<void> => {
+    const res = await fetch(`/api/level/${id}`, {
+      method: 'put',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ level_id: prior }),
+    });
+    const data: { message: string } = await res.json();
+    if (data.message === 'success') {
+      dispatch({ type: 'todos/level', payload: id });
+    }
+  };
 
   const onHandleDelete = (id: TodoID): void => {
     fetchTodoDelete(id)
       .then(() => dispatch({ type: 'todos/remove', payload: id }))
       .catch(console.log);
   };
+
+  const handlePrior = (level_id: string): void => {
+    setPrior(level_id);
+  };
+
+  // const sortedPrior = prior === 'all' ? todos : todos.filter((tod) => tod.level_id === prior);
 
   return (
     <div
@@ -76,6 +94,35 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
+      <select value={prior} onChange={(e) => setPrior(e.target.value)}>
+        <option value="all" onClick={() => handlePrior('all')}>
+          all
+        </option>
+        <option value="1" onClick={() => handlePrior('1')}>
+          low
+        </option>
+        <option value="2" onClick={() => handlePrior('2')}>
+          middle
+        </option>
+        <option value="3" onClick={() => handlePrior('3')}>
+          high
+        </option>
+      </select>
+      <button
+        onClick={() => onHandleLevel(todo.id, prior)}
+        type="button"
+        style={{
+          backgroundColor:
+            prior === '1'
+              ? 'rgba(0, 255, 0, 0.5)'
+              : prior === '3'
+              ? 'rgba(255, 0, 0, 0.5)'
+              : 'rgba(255, 255, 0, 0.5)',
+          color: 'white',
+        }}
+      >
+        Change Level
+      </button>
     </div>
   );
 };

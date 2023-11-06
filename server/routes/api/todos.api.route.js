@@ -9,10 +9,12 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, status } = req.body;
     const todo = await Todo.create({
       title,
       description,
+      status,
+      level_id: 1,
       user_id: req.session.user_id,
     });
     res.json(todo);
