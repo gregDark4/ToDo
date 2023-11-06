@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import type { Todo } from './types';
 import { useAppDispatch } from '../../redux/store';
 
-const AddTodoForm = (): JSX.Element => {
+const AddTodoForm = ({setShowBtn}:{ setShowBtn:(prev:boolean)=>void }): JSX.Element => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
+  
   const dispatch = useAppDispatch();
 
   const onHandleTodoAdd = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -56,7 +56,7 @@ const AddTodoForm = (): JSX.Element => {
             type="text"
           />
         </label>
-        <button type="submit" className="form-submit-button">
+        <button type="submit" className="form-submit-button" onClick={() => setShowBtn((prev)=>!prev)}> 
           Submit
         </button>
       </form>

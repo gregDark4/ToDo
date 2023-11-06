@@ -6,8 +6,14 @@ import AddTodoForm from './AddTodoForm';
 
 const TodosPage = (): JSX.Element => {
   const [filter, setFilter] = useState('all');
+
+  const [showBtn, setShowBtn] = useState(false);
+
+  // const [prior, setPrior] = useState('all');
+
   const todoss = useSelector((store: RootState) => store.todos.todos);
   const sortedTodos = todoss.sort((todoA, todoB) => todoB.level_id - todoA.level_id);
+
   const todos = useSelector((store: RootState) => store.todos.todos);
   const handleFilter = (status: string): void => {
     setFilter(status);
@@ -18,7 +24,20 @@ const TodosPage = (): JSX.Element => {
   return (
     <div className="todo__container">
       <div>
-        <AddTodoForm />
+        <div>
+
+          {showBtn ? (
+            <div id="add_form">
+              {' '}
+              <AddTodoForm setShowBtn={setShowBtn}/>
+            </div>
+          ) : (
+            <button type="button" id="add_task_btn" onClick={() => setShowBtn((prev)=>!prev)}>
+              +Add Task
+            </button>
+          )}
+          {}
+        </div>
         <div>
           <button type="button" onClick={() => handleFilter('all')}>
             all
@@ -35,7 +54,7 @@ const TodosPage = (): JSX.Element => {
         <div key={todo.id} />
       ))}
       {filteredTodos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
+        <TodoItem key={todo.id} todo={todo}/>
       ))}
     </div>
   );
