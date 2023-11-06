@@ -6,6 +6,7 @@ import Modal from '../Modal/Modal';
 
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
+  const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   // const [status, setStatus] = useState(todo.status ? 'completed' : 'notCompleted');
 
@@ -46,8 +47,13 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         marginBottom: '20px',
       }}
     >
-      <h2 className="game__title">{todo.title}</h2>
-      <a>{todo.description}</a>
+      <section>
+        <h2 className="game__title" onClick={() => setShow(!show)}>
+          {todo.title}
+        </h2>
+        {show && <div id="description">{todo.description}</div>}
+      </section>
+
       <br />
       <br />
       <label>

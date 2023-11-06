@@ -8,7 +8,8 @@ router.put("/:todoId", async (req, res) => {
     console.log(req.body);
     const [result] = await Todo.update(
       { title, description },
-      { where: { id: todoId } }
+      { where: { id: todoId, user_id: req.session.user_id } }
+
     );
     if (result > 0) {
       res.json({ message: "success" });
