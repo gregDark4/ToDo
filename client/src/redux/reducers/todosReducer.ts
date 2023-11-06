@@ -38,6 +38,13 @@ const todosReducer = (state: TodosState = initState, action: Action): TodosState
             : todo,
         ),
       };
+    case 'todos/level':
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload ? { ...todo, level_id: todo.level_id } : todo,
+        ),
+      };
     default:
       return state;
   }
