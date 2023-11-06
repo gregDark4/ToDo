@@ -6,6 +6,7 @@ export type Todo = {
   status: boolean;
   isData: Date;
   level_id: string;
+  createdAt: string;
 };
 
 export type TodoID = Todo['id'];

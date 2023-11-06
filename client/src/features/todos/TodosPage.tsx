@@ -18,7 +18,6 @@ const TodosPage = (): JSX.Element => {
   const handleFilter = (status: string): void => {
     setFilter(status);
   };
-
   const filteredTodos =
     filter === 'all' ? todos : todos.filter((todo) => todo.status === (filter === 'completed'));
 
@@ -41,13 +40,13 @@ const TodosPage = (): JSX.Element => {
         </div>
         <div>
           <button type="button" onClick={() => handleFilter('all')}>
-            Все
+            all
           </button>
           <button type="button" onClick={() => handleFilter('completed')}>
-            Завершенные
+            completed
           </button>
           <button type="button" onClick={() => handleFilter('incomplete')}>
-            Незавершенные
+            incomplete
           </button>
         </div>
       </div>
