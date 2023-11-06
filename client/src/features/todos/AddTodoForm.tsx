@@ -22,6 +22,7 @@ const AddTodoForm = (): JSX.Element => {
         description,
         status: false,
         level_id: 1,
+        isData: new Date(),
       }),
     });
     const data: Todo = await res.json();

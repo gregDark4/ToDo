@@ -3,6 +3,7 @@ import type { Action, TodosState } from '../types';
 
 export const initState: TodosState = {
   todos: [],
+  // filter: 'all'
 };
 
 const todosReducer = (state: TodosState = initState, action: Action): TodosState => {
@@ -43,6 +44,13 @@ const todosReducer = (state: TodosState = initState, action: Action): TodosState
         ...state,
         todos: state.todos.map((todo) =>
           todo.id === action.payload ? { ...todo, level_id: todo.level_id } : todo,
+        ),
+      };
+    case 'todos/time':
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload ? { ...todo, isData: todo.isData } : todo,
         ),
       };
     default:
