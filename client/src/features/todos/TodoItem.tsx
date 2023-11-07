@@ -42,15 +42,6 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     return () => clearInterval(interval);
   }, [todo.isData]);
 
-  // useEffect(() => {
-  //   if (countdown <= 259200) {
-  //     setPrior('3'); // Если осталось 3 дня или меньше до выполнения, prior устанавливается в '3' (high)
-  //   } else {
-  //     // Иначе вы можете выбрать приоритет самостоятельно, например '1' (low) или '2' (middle)
-  //     setPrior('2');
-  //   }
-  // }, [countdown]);
-
   useEffect(() => {
     if (countdown >= 604800) {
       setPrior('1');
@@ -157,6 +148,12 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       }}
     >
       <div>
+        {/* <input
+          className="btn"
+          type="checkbox"
+          checked={todo.status}
+          onChange={() => onHandleChange(todo.id)}
+        /> */}
         <label>
           <input
             className="btn"
@@ -195,18 +192,10 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
               />
             )}
           </div>
-        </label>
-        {show && <div id="description">{todo.description}</div>}
+        {/* </label> */}
+        {/* {show && <div id="description">{todo.description}</div>} */}
       </div>
       <br />
-
-      {/* {user && user.id === todo.user_id ? (
-        <p>
-          <button onClick={() => onHandleDelete(todo.id)} type="button">
-            Delete
-          </button>
-        </p>
-      ) : null} */}
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
