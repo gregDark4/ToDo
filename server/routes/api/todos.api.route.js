@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   try {
     const { title, description, status, isData } = req.body;
     console.log(req.body);
-    if (title && description) {
+    if (title.trim() && description.trim()) {
       const todo = await Todo.create({
         title,
         description,

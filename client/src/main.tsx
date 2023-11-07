@@ -10,6 +10,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
+      <footer className="gsl">
+        За помощью обращайтесь по номеру:
+        <p>+7 (812) 246-27-08</p>
+        <p>+7 (812) 246-27-98</p>
+        <p>+7 (812) 246-10-51</p>
+      </footer>
     </BrowserRouter>
   </Provider>,
   // </React.StrictMode>

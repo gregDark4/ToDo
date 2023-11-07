@@ -43,7 +43,7 @@ body {
 .form-container {
   display: flex;
   /* flex-direction: row; */
-  flex-direction:column;
+  flex-direction: column;
   margin-top: 20px;
 }
 
@@ -87,4 +87,8 @@ body {
 
 .btn {
   text-align: end;
+}
+
+.gsl {
+  text-align: center;
 }

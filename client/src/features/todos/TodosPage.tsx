@@ -53,12 +53,6 @@ const TodosPage = (): JSX.Element => {
       {filteredTodos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
-      <footer>
-        За помощью обращайтесь по номеру:
-        <p>+7 (812) 246-27-08</p>
-        <p>+7 (812) 246-27-98</p>
-        <p>+7 (812) 246-10-51</p>
-      </footer>
     </div>
   );
 };
