@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Calendar } from 'react-date-range';
 import type { RootState } from '../../redux/store';
@@ -13,30 +13,52 @@ import Modal from '../Modal/Modal';
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [show, setShow] = useState(false);
-  const [prior, setPrior] = useState(todo.level_id);
-  const [time, setTime] = useState<Date>();
+  const [prior, setPrior] = useState('1');
 
-  // const [date, setDate] = useState(todo.createdAt);
-  // const [dateNow, setDateNow] = useState(todo.isData);
-  // const [countdown, setCountdown] = useState(0);
+  const [time, setTime] = useState<Date>();
+  const [deadline, setDeadline] = useState<number | null>(null);
+  const [countdown, setCountdown] = useState(0);
+
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const user = useSelector((store: RootState) => store.auth.auth);
-  // const todos = useSelector((store: RootState) => store.todos.todos);
-
   const dispatch = useAppDispatch();
 
-  // console.log(date);
-  // console.log(dateNow);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentTime = new Date().getTime();
+      const deadlineTime = new Date(todo.isData).getTime();
+      const timeDiff = deadlineTime - currentTime;
+      const seconds = Math.floor(timeDiff / 1000);
+      setCountdown(seconds);
+      if (seconds <= 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [todo.isData]);
 
   // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const timeDiff = Date.parse(dateNow) - Date.parse(date);
-  //     const seconds = Math.floor(timeDiff / 1000);
-  //     setCountdown(seconds);
-  //   }, 1000);
+  //   if (countdown <= 259200) {
+  //     setPrior('3'); // Если осталось 3 дня или меньше до выполнения, prior устанавливается в '3' (high)
+  //   } else {
+  //     // Иначе вы можете выбрать приоритет самостоятельно, например '1' (low) или '2' (middle)
+  //     setPrior('2');
+  //   }
+  // }, [countdown]);
 
-  //   return () => clearInterval(interval);
-  // }, [date, dateNow]);
+  useEffect(() => {
+    if (countdown >= 604800) {
+      setPrior('1');
+    }
+    if (countdown <= 604800 && countdown >= 259200) {
+      setPrior('2');
+    }
+    if (countdown <= 259200) {
+      setPrior('3');
+    }
+  }, [countdown]);
 
   const onHandleTime = async (id: TodoID): Promise<void> => {
     const res = await fetch(`/api/time/${id}`, {
@@ -53,11 +75,32 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     console.log(data);
     console.log(time);
   };
-  const handleTime = (time: string): void => {
-    setTime(time);
-    // alert(time);
-    console.log(time);
+
+  const handleTime = (selectedDate) => {
+    const createdDate = new Date(todo.createdAt);
+    const timeDiff = selectedDate.getTime() - createdDate.getTime();
+    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert milliseconds to days
+    setDeadline(daysDiff);
   };
+
+  const saveStateToLocalStorage = (): void => {
+    localStorage.setItem(`deadline_${todo.id}`, JSON.stringify(deadline));
+  };
+
+  const loadStateFromLocalStorage = (): void => {
+    const savedDate = localStorage.getItem('selectedDate');
+    if (savedDate) {
+      setSelectedDate(new Date(savedDate));
+    }
+  };
+
+  useEffect(() => {
+    loadStateFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    saveStateToLocalStorage();
+  }, [deadline]);
 
   const onHandleChange = async (id: TodoID): Promise<void> => {
     const res = await fetch(`/api/todos/${id}`, {
@@ -170,12 +213,10 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         Change Level
       </button>
       <div>
-        <Calendar time={new Date()} onChange={handleTime} />
-        {/* <Calendar time={new Date()} onChange={(e) => setTime(time)} /> */}
-        {/* <p>Countdown: {countdown} seconds</p> */}
+        <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
       </div>
-      <button onClick={() => onHandleTime(todo.id, time)} type="button">
-        Выбери дату
+      <button type="button" onClick={() => onHandleTime(todo.id)}>
+        timeline
       </button>
     </div>
   );
