@@ -14,7 +14,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [show, setShow] = useState(false);
   const [prior, setPrior] = useState('1');
-
+  const [calendar, setCalendar] = useState(false);
   const [time, setTime] = useState<Date>();
   const [deadline, setDeadline] = useState<number | null>(null);
   const [countdown, setCountdown] = useState(0);
@@ -72,8 +72,6 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     if (data.message === 'success') {
       dispatch({ type: 'todos/time', payload: id });
     }
-    console.log(data);
-    console.log(time);
   };
 
   const handleTime = (selectedDate) => {
@@ -140,6 +138,11 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     setPrior(level_id);
   };
 
+  const handleTimeLineClick = async (todo: Todo): Promise<void> => {
+    await onHandleTime(todo.id);
+    setCalendar((prev) => !prev);
+  };
+
   return (
     <div
       className="game__container"
@@ -151,34 +154,45 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       }}
     >
       <div>
-        <h2 className="game__title" onClick={() => setShow(!show)}>
-          {todo.title}
-        </h2>
-        {show && <div id="description">{todo.description}</div>}
-      </div>
-
-      <br />
-      <br />
-      <label>
-        Выполнено
-        <input
-          className="btn"
-          type="checkbox"
-          checked={todo.status}
-          onChange={() => onHandleChange(todo.id)}
-        />
-      </label>
-      {user && user.id === todo.user_id ? (
-        <>
+        <label>
+          <input
+            className="btn"
+            type="checkbox"
+            checked={todo.status}
+            onChange={() => onHandleChange(todo.id)}
+          />
+          <b className="game__title" onClick={() => setShow(!show)}>
+            {todo.title}
+          </b>
           <button className="btn" onClick={() => setModalActive((prev) => !prev)} type="button">
             Edit
           </button>
-          <p>
-            <button onClick={() => onHandleDelete(todo.id)} type="button">
-              Delete
-            </button>
-          </p>
-        </>
+          <button onClick={() => onHandleDelete(todo.id)} type="button">
+            Delete
+          </button>
+          <div>
+            {calendar ? (
+              <>
+                {' '}
+                <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
+              </>
+            ) : (
+              <button type="button" onClick={() => setCalendar((prev) => !prev)}>
+                Показать календарь
+              </button>
+            )}
+          </div>
+        </label>
+        {show && <div id="description">{todo.description}</div>}
+      </div>
+      <br />
+
+      {user && user.id === todo.user_id ? (
+        <p>
+          <button onClick={() => onHandleDelete(todo.id)} type="button">
+            Delete
+          </button>
+        </p>
       ) : null}
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
@@ -212,12 +226,11 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       >
         Change Level
       </button>
-      <div>
-        <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
-      </div>
-      <button type="button" onClick={() => onHandleTime(todo.id)}>
-        timeline
-      </button>
+      {calendar && (
+        <button type="button" onClick={() => handleTimeLineClick(todo)}>
+          timeline
+        </button>
+      )}
     </div>
   );
 };
