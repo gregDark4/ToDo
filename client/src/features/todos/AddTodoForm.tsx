@@ -36,7 +36,6 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
     <div>
       <form className="form-container" onSubmit={onHandleTodoAdd}>
         <label htmlFor="title" className="form-label">
-          Title
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -44,10 +43,10 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             id="title"
             className="form-input"
             type="text"
+            placeholder='Title'
           />
         </label>
         <label htmlFor="description" className="form-label">
-          Description
           <input
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -55,6 +54,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             id="description"
             className="form-input"
             type="text"
+            placeholder='Description'
           />
         </label>
         <button

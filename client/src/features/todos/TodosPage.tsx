@@ -34,7 +34,6 @@ const TodosPage = (): JSX.Element => {
               +Add Task
             </button>
           )}
-          {}
         </div>
         <div>
           <button type="button" onClick={() => handleFilter('all')}>
