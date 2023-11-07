@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import type { Todo } from './types';
 import { useAppDispatch } from '../../redux/store';
+import {Button, } from 'antd'
 
 const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): JSX.Element => {
   const [title, setTitle] = useState('');
@@ -60,13 +61,13 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             placeholder="Description"
           />
         </label>
-        <button
-          type="submit"
+        <Button
+          type="primary"
           className="form-submit-button"
           // onClick={() => setShowBtn((prev) => !prev)}
         >
           Add
-        </button>
+        </Button>
         <br />
       </form>
     </div>
