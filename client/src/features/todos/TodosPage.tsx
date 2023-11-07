@@ -31,10 +31,11 @@ const TodosPage = (): JSX.Element => {
             </div>
           ) : (
             <button type="button" id="add_task_btn" onClick={() => setShowBtn((prev) => !prev)}>
-              +Add Task
+              +Add New Task
             </button>
           )}
         </div>
+        <br />
         <div>
           <button type="button" onClick={() => handleFilter('all')}>
             all

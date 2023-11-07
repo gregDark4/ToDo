@@ -65,8 +65,9 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
           className="form-submit-button"
           // onClick={() => setShowBtn((prev) => !prev)}
         >
-          Submit
+          Add
         </button>
+        <br />
       </form>
     </div>
   );
