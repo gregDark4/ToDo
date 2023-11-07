@@ -2,9 +2,14 @@ const router = require("express").Router();
 const { Todo } = require("../../db/models");
 
 router.get("/", async (req, res) => {
-  const todos = await Todo.findAll();
-  // {where: { user_id: req.session.user_id }}
-  res.json(todos);
+  try {
+    const todos = await Todo.findAll({
+      where: { user_id: req.session.user_id },
+    });
+    res.json(todos);
+  } catch ({ message }) {
+    res.json({ message });
+  }
 });
 
 router.post("/", async (req, res) => {

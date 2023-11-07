@@ -16,18 +16,12 @@ router.post("/sign-up", async (req, res) => {
         });
         req.session.user_id = user.id;
       }
-      if (!email || !password) {
-        res.json({ message: "Заполните все поля" });
-        return;
-      }
-    }
-    if (!email || !password) {
+      res.json({ message: "success", user });
+    } else {
       res.json({ message: "Заполните все поля" });
-      return;
     }
-    res.json({ message: "success", user });
   } catch ({ message }) {
-    res.json({ message });
+    res.status(500).json({ message });
   }
 });
 
@@ -37,7 +31,6 @@ router.get("/logout", (req, res) => {
     if (error) {
       return res.status(500).json({ message: "Ошибка при удалении сессии" });
     }
-
     res
       .clearCookie("user_sid") // серверное удаление куки по имени
       .json({ message: "success" });
@@ -57,23 +50,30 @@ router.post("/sign-in", async (req, res) => {
         res.json({ message: "Неправильный логин или пароль" });
       }
     } else {
-      res.json({ message: "Заполните все опля!!" });
+      res.json({ message: "Заполните все поля" });
     }
   } catch ({ message }) {
-    res.json({ message });
+    res.status(500).json({ message });
   }
 });
 
 router.get("/check", async (req, res) => {
   try {
     if (req.session?.user_id) {
+      const userId = req.session.user_id;
       const user = await User.findOne({
-        where: { id: req.session.user_id },
+        where: { id: userId },
       });
-      res.json(user);
+      if (user.id === userId) {
+        res.json(user);
+      } else {
+        res.status(403).json({ message: "Доступ запрещен" });
+      }
+    } else {
+      res.status(401).json({ message: "Пользователь не авторизован" });
     }
   } catch ({ message }) {
-    res.json({ message });
+    res.status(500).json({ message });
   }
 });
 
