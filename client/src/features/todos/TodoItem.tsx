@@ -187,13 +187,13 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       </div>
       <br />
 
-      {user && user.id === todo.user_id ? (
+      {/* {user && user.id === todo.user_id ? (
         <p>
           <button onClick={() => onHandleDelete(todo.id)} type="button">
             Delete
           </button>
         </p>
-      ) : null}
+      ) : null} */}
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>

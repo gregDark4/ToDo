@@ -12,6 +12,9 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
 
   const onHandleTodoAdd = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    if (title.trim() === '' || description.trim() === '') {
+      return;
+    }
     const res = await fetch('/api/todos', {
       method: 'post',
       headers: {
@@ -43,7 +46,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             id="title"
             className="form-input"
             type="text"
-            placeholder='Title'
+            placeholder="Title"
           />
         </label>
         <label htmlFor="description" className="form-label">
@@ -54,7 +57,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             id="description"
             className="form-input"
             type="text"
-            placeholder='Description'
+            placeholder="Description"
           />
         </label>
         <button
