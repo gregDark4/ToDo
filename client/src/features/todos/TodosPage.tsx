@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';
 import TodoItem from './TodoItem';
 import AddTodoForm from './AddTodoForm';
+import {Button} from 'antd'
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 const TodosPage = (): JSX.Element => {
   const [filter, setFilter] = useState('all');
@@ -24,29 +28,26 @@ const TodosPage = (): JSX.Element => {
   return (
     <div className="todo__container">
       <div>
-        <div>
+        <div> 
           {showBtn ? (
             <div id="add_form">
               <AddTodoForm setShowBtn={setShowBtn} />
             </div>
           ) : (
-            <button type="button" id="add_task_btn" onClick={() => setShowBtn((prev) => !prev)}>
+            <Button type="primary" id="add_task_btn" onClick={() => setShowBtn((prev) => !prev)}>
               +Add New Task
-            </button>
+            </Button>
           )}
         </div>
         <br />
         <div>
-          <button type="button" onClick={() => handleFilter('all')}>
-            all
-          </button>
-          <button type="button" onClick={() => handleFilter('completed')}>
-            completed
-          </button>
-          <button type="button" onClick={() => handleFilter('incomplete')}>
-            incomplete
-          </button>
-        </div>
+          <b>Show</b>
+      <Select defaultValue="all" onChange={handleFilter} className="filtr_select">
+        <Option value="all">all</Option>
+        <Option value="completed">completed</Option>
+        <Option value="incomplete">incomplete</Option>
+      </Select>
+    </div>
       </div>
       {sortedTodos.map((todo) => (
         <div key={todo.id} />

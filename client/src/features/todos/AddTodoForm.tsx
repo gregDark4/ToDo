@@ -28,7 +28,8 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
         level_id: 1,
         isData: new Date(),
       }),
-    });
+    });console.log(res);
+    
     const data: Todo = await res.json();
     console.log(data);
     dispatch({ type: 'todos/add', payload: data });
@@ -63,7 +64,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
         </label>
         <Button className="form-submit-button" onClick={onHandleTodoAdd}>
           Add
-        </Button>
+        </button>
         <br />
       </form>
     </div>
