@@ -37,13 +37,12 @@ const NavBar = (): JSX.Element => {
               </li>
               <li>
                 <NavLink onClick={logOut} to="/">
-                  logout{' '}
+                  logout
                 </NavLink>
               </li>
             </>
           )}
         </ul>
-        {/* <img className="nav__logo" src={logo} alt="logo" /> */}
       </div>
       <Outlet />
     </>
