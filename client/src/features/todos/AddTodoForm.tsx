@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState } from 'react';
+import { Button } from 'antd';
 import type { Todo } from './types';
 import { useAppDispatch } from '../../redux/store';
-import {Button} from 'antd'
 
 const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): JSX.Element => {
   const [title, setTitle] = useState('');
@@ -11,8 +11,8 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
 
   const dispatch = useAppDispatch();
 
-  const onHandleTodoAdd = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+  const onHandleTodoAdd = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    // e.preventDefault();
     if (title.trim() === '' || description.trim() === '') {
       return;
     }
@@ -39,7 +39,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
   };
   return (
     <div>
-      <form className="form-container" onSubmit={onHandleTodoAdd}>
+      <form className="form-container">
         <label htmlFor="title" className="form-label">
           <input
             value={title}
@@ -62,11 +62,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             placeholder="Description"
           />
         </label>
-        <button
-          type="submit"
-          className="form-submit-button"
-          onClick={() => setShowBtn((prev) => !prev)}
-        >
+        <Button className="form-submit-button" onClick={onHandleTodoAdd}>
           Add
         </button>
         <br />

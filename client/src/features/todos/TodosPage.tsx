@@ -12,13 +12,13 @@ const TodosPage = (): JSX.Element => {
   const [filter, setFilter] = useState('all');
 
   const [showBtn, setShowBtn] = useState(false);
+  const todos = useSelector((store: RootState) => store.todos.todos);
+  const todoss = useSelector((store: RootState) => store.todos.todos);
 
   // const [prior, setPrior] = useState('all');
 
-  const todoss = useSelector((store: RootState) => store.todos.todos);
   const sortedTodos = todoss.sort((todoA, todoB) => todoB.level_id - todoA.level_id);
 
-  const todos = useSelector((store: RootState) => store.todos.todos);
   const handleFilter = (status: string): void => {
     setFilter(status);
   };
