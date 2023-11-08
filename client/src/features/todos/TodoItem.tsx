@@ -20,6 +20,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [time, setTime] = useState<Date>();
   const [deadline, setDeadline] = useState<number | null>(null);
   const [countdown, setCountdown] = useState(0);
+  console.log(countdown);
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -36,7 +37,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       if (seconds <= 0) {
         clearInterval(interval);
       }
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [todo.isData]);

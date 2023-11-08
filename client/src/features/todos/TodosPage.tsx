@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Button, Select } from 'antd';
 import type { RootState } from '../../redux/store';
 import TodoItem from './TodoItem';
 import AddTodoForm from './AddTodoForm';
-import {Button} from 'antd'
-import { Select } from 'antd';
 
 const { Option } = Select;
 
@@ -28,7 +27,7 @@ const TodosPage = (): JSX.Element => {
   return (
     <div className="todo__container">
       <div>
-        <div> 
+        <div>
           {showBtn ? (
             <div id="add_form">
               <AddTodoForm setShowBtn={setShowBtn} />
@@ -42,12 +41,12 @@ const TodosPage = (): JSX.Element => {
         <br />
         <div>
           <b>Show</b>
-      <Select defaultValue="all" onChange={handleFilter} className="filtr_select">
-        <Option value="all">all</Option>
-        <Option value="completed">completed</Option>
-        <Option value="incomplete">incomplete</Option>
-      </Select>
-    </div>
+          <Select defaultValue="all" onChange={handleFilter} className="filtr_select">
+            <Option value="all">all</Option>
+            <Option value="completed">completed</Option>
+            <Option value="incomplete">incomplete</Option>
+          </Select>
+        </div>
       </div>
       {sortedTodos.map((todo) => (
         <div key={todo.id} />
@@ -55,6 +54,12 @@ const TodosPage = (): JSX.Element => {
       {filteredTodos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
+      <footer className="gsl">
+        За помощью обращайтесь по номеру:
+        <p>+7 (812) 246-27-08</p>
+        <p>+7 (812) 246-27-98</p>
+        <p>+7 (812) 246-10-51</p>
+      </footer>
     </div>
   );
 };

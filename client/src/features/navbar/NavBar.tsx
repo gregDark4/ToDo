@@ -19,7 +19,7 @@ const NavBar = (): JSX.Element => {
       <div className="nav__container">
         <ul className="nav__menu">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">Check</NavLink>
           </li>
           {!user ? (
             <>
