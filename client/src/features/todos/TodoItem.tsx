@@ -2,7 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Calendar } from 'react-date-range';
-import { EditOutlined, CloseSquareOutlined, ScheduleOutlined } from '@ant-design/icons';
+import {
+  EditOutlined,
+  CloseSquareOutlined,
+  ScheduleOutlined,
+  ClockCircleOutlined,
+  StarOutlined,
+} from '@ant-design/icons';
 import { Button, Select } from 'antd';
 import type { RootState } from '../../redux/store';
 import 'react-date-range/dist/styles.css'; // main style file
@@ -20,7 +26,6 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [time, setTime] = useState<Date>();
   const [deadline, setDeadline] = useState<number | null>(null);
   const [countdown, setCountdown] = useState(0);
-  console.log(countdown);
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -148,14 +153,21 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       }}
     >
       <div>
-        <label>
-          <input
-            className="btn"
-            type="checkbox"
-            checked={todo.status}
-            onChange={() => onHandleChange(todo.id)}
-          />
-        </label>
+        <Button
+          className="btn"
+          onClick={() => onHandleChange(todo.id)}
+          type="button"
+          id="btnEditTask"
+          icon={<StarOutlined />}
+        />
+        {/* <label>
+           <input
+             className="btn"
+             type="checkbox"
+             checked={todo.status}
+             onClick={() => onHandleChange(todo.id)}
+           />
+         </label> */}
         <b className="game__title" onClick={() => setShow(!show)}>
           {todo.title}
         </b>
@@ -193,10 +205,10 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
-      <select value={prior} onChange={(e) => setPrior(e.target.value)}>
-        {/* <Option value="all" onClick={() => handlePrior('all')}>
+      {/* <select value={prior} onChange={(e) => setPrior(e.target.value)}>
+        <option value="all" onClick={() => handlePrior('all')}>
           all
-        </Option> */}
+        </option>
         <option value="1" onClick={() => handlePrior('1')}>
           low
         </option>
@@ -206,10 +218,11 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         <option value="3" onClick={() => handlePrior('3')}>
           high
         </option>
-      </select>
+      </select> */}
       <Button
         onClick={() => onHandleLevel(todo.id, prior)}
         type="button"
+        icon={<ClockCircleOutlined />}
         style={{
           backgroundColor:
             prior === '1'
@@ -219,9 +232,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
               : 'rgba(255, 255, 0, 0.5)',
           color: 'white',
         }}
-      >
-        Priority
-      </Button>
+      />
       {calendar && (
         <Button type="default" onClick={() => handleTimeLineClick(todo)}>
           Set deadline
