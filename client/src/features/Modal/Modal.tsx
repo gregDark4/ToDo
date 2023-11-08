@@ -36,7 +36,7 @@ const Modal = ({
       <Input value={title} onChange={(e) => setTitle(e.target.value)} type="text" />
       <Input value={description} onChange={(e) => setDescription(e.target.value)} type="text" />
       <Button type="default" onClick={() => onHandleEdit(todo.id)}>
-        Ответить
+        Update
       </Button>
       <Button type="default" onClick={() => setModalActive(false)}>
         X
