@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Calendar } from 'react-date-range';
 import { EditOutlined, CloseSquareOutlined, ScheduleOutlined } from '@ant-design/icons';
-import { Form, Input, Button } from 'antd';
+import { Button } from 'antd';
 import type { RootState } from '../../redux/store';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -11,7 +11,6 @@ import { useAppDispatch } from '../../redux/store';
 import type { Todo, TodoID } from './types';
 import { fetchTodoDelete } from '../../App/api';
 import Modal from '../Modal/Modal';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
@@ -71,7 +70,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   const handleTime = (selectedDate) => {
     const createdDate = new Date(todo.createdAt);
     const timeDiff = selectedDate.getTime() - createdDate.getTime();
-    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert milliseconds to days
+    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
     setDeadline(daysDiff);
   };
 
@@ -148,12 +147,6 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       }}
     >
       <div>
-        {/* <input
-          className="btn"
-          type="checkbox"
-          checked={todo.status}
-          onChange={() => onHandleChange(todo.id)}
-        /> */}
         <label>
           <input
             className="btn"
@@ -161,39 +154,39 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
             checked={todo.status}
             onChange={() => onHandleChange(todo.id)}
           />
-          <b className="game__title" onClick={() => setShow(!show)}>
-            {todo.title}
-          </b>
-          <Button
-            className="btn"
-            onClick={() => setModalActive((prev) => !prev)}
-            type="button"
-            id="btnEditTask"
-            icon={<EditOutlined />}
-          />
-          <Button
-            onClick={() => onHandleDelete(todo.id)}
-            type="button"
-            id="btnDeleteTask"
-            icon={<CloseSquareOutlined />}
-          />
-          <div>
-            {calendar ? (
-              <>
-                {' '}
-                <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
-              </>
-            ) : (
-              <Button
-                type="button"
-                id="btnShowCalendar"
-                icon={<ScheduleOutlined />}
-                onClick={() => setCalendar((prev) => !prev)}
-              />
-            )}
-          </div>
-        {/* </label> */}
-        {/* {show && <div id="description">{todo.description}</div>} */}
+        </label>
+        <b className="game__title" onClick={() => setShow(!show)}>
+          {todo.title}
+        </b>
+        <Button
+          className="btn"
+          onClick={() => setModalActive((prev) => !prev)}
+          type="button"
+          id="btnEditTask"
+          icon={<EditOutlined />}
+        />
+        <Button
+          onClick={() => onHandleDelete(todo.id)}
+          type="button"
+          id="btnDeleteTask"
+          icon={<CloseSquareOutlined />}
+        />
+        <div>
+          {calendar ? (
+            <>
+              {' '}
+              <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
+            </>
+          ) : (
+            <Button
+              type="button"
+              id="btnShowCalendar"
+              icon={<ScheduleOutlined />}
+              onClick={() => setCalendar((prev) => !prev)}
+            />
+          )}
+        </div>
+        {show && <div id="description">{todo.description}</div>}
       </div>
       <br />
       <div className="modalpj">
