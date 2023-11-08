@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './modal.css';
-// import { useActionData } from 'react-router-dom';
 import type { Todo, TodoID } from '../todos/types';
 import { useAppDispatch } from '../../redux/store';
+import { Input, Button } from 'antd';
 
 const Modal = ({
   todo,
@@ -14,12 +14,7 @@ const Modal = ({
   const [title, setTitle] = useState(todo.title);
   const [description, setDescription] = useState(todo.description);
   const dispatch = useAppDispatch();
-  // const onHandleEdit = (id: TodoID): void => {
-  // api
-  // .fetchTodoEdit(id)
-  // .then(() => dispatch({ type: 'todos/edit', payload: id }))
-  // .catch(console.log);
-  // };
+
   const onHandleEdit = async (id: TodoID): Promise<void> => {
     const res = await fetch(`/api/edit/${id}`, {
       method: 'put',
@@ -36,20 +31,18 @@ const Modal = ({
     setDescription('');
   };
   return (
-    // <div className={active ? 'modal active': 'modal'} onClick={()=> setActive(false)}>
-    // <div className="modal__content" onClick={e.stopPropagation()}>
+  
     <div className="conteiner">
-      <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" />
-      <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" />
-      <button type="button" onClick={() => onHandleEdit(todo.id)}>
+      <Input value={title} onChange={(e) => setTitle(e.target.value)} type="text" />
+      <Input value={description} onChange={(e) => setDescription(e.target.value)} type="text" />
+      <Button type="default" onClick={() => onHandleEdit(todo.id)}>
         Ответить
-      </button>
-      <button type="button" onClick={() => setModalActive(false)}>
+      </Button>
+      <Button type="default" onClick={() => setModalActive(false)}>
         X
-      </button>
+      </Button>
     </div>
-    // </div>
-    // </div>
+    
   );
 };
 
