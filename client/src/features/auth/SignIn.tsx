@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Form, Input, Button } from 'antd';
 import type { User } from '../users/type';
 import { useAppDispatch } from '../../redux/store';
 
@@ -11,8 +12,11 @@ const SignIn = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const onHandlePlayerAdd = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const onHandlePlayerAdd = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
+    if (email.trim() === '' || password.trim() === '') {
+      return;
+    }
     const res = await fetch('/api/auth/sign-in', {
       method: 'post',
       headers: {
@@ -34,28 +38,29 @@ const SignIn = (): JSX.Element => {
     <>
       <h1>SignIn</h1>
       <div>
-        <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onHandlePlayerAdd}>
+        <Form style={{ display: 'flex', flexDirection: 'column' }}>
           <label htmlFor="a">
             Email
-            <input
+            <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               name="email"
               type="text"
             />
           </label>
-
           <label htmlFor="d">
             Password
-            <input
+            <Input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               name="password"
               type="text"
             />
           </label>
-          <button type="submit">Submit</button>
-        </form>
+          <Button type="primary" onClick={onHandlePlayerAdd}>
+            Submit
+          </Button>
+        </Form>
       </div>
     </>
   );

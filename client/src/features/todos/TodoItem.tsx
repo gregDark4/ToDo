@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Calendar } from 'react-date-range';
 import { EditOutlined, CloseSquareOutlined, ScheduleOutlined } from '@ant-design/icons';
-import { Button, Select} from 'antd';
+import { Button, Select } from 'antd';
 import type { RootState } from '../../redux/store';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -37,7 +37,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       if (seconds <= 0) {
         clearInterval(interval);
       }
-    }, 5000);
+    });
 
     return () => clearInterval(interval);
   }, [todo.isData]);
@@ -172,7 +172,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
           id="btnDeleteTask"
           icon={<CloseSquareOutlined />}
         />
-         {show && <div id="description">{todo.description}</div>}
+        {show && <div id="description">{todo.description}</div>}
         <div>
           {calendar ? (
             <>
@@ -188,26 +188,25 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
             />
           )}
         </div>
-       
       </div>
       <br />
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
-      <Select value={prior} onChange={(e) => setPrior(e.target.value)}>
+      <select value={prior} onChange={(e) => setPrior(e.target.value)}>
         {/* <Option value="all" onClick={() => handlePrior('all')}>
           all
         </Option> */}
-        <Option value="1" onClick={() => handlePrior('1')}>
+        <option value="1" onClick={() => handlePrior('1')}>
           low
-        </Option>
-        <Option value="2" onClick={() => handlePrior('2')}>
+        </option>
+        <option value="2" onClick={() => handlePrior('2')}>
           middle
-        </Option>
-        <Option value="3" onClick={() => handlePrior('3')}>
+        </option>
+        <option value="3" onClick={() => handlePrior('3')}>
           high
-        </Option>
-      </Select>
+        </option>
+      </select>
       <Button
         onClick={() => onHandleLevel(todo.id, prior)}
         type="button"
@@ -221,7 +220,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
           color: 'white',
         }}
       >
-        Priority 
+        Priority
       </Button>
       {calendar && (
         <Button type="default" onClick={() => handleTimeLineClick(todo)}>
