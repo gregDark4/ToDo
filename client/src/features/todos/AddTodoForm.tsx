@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import type { Todo } from './types';
 import { useAppDispatch } from '../../redux/store';
-import {Button, } from 'antd'
+import {Button} from 'antd'
 
 const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): JSX.Element => {
   const [title, setTitle] = useState('');
@@ -28,7 +28,8 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
         level_id: 1,
         isData: new Date(),
       }),
-    });
+    });console.log(res);
+    
     const data: Todo = await res.json();
     console.log(data);
     dispatch({ type: 'todos/add', payload: data });
@@ -61,13 +62,13 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
             placeholder="Description"
           />
         </label>
-        <Button
-          type="primary"
+        <button
+          type="submit"
           className="form-submit-button"
-          // onClick={() => setShowBtn((prev) => !prev)}
+          onClick={() => setShowBtn((prev) => !prev)}
         >
           Add
-        </Button>
+        </button>
         <br />
       </form>
     </div>

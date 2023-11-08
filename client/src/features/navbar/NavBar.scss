@@ -5,7 +5,7 @@
     justify-content: center;
     padding: 0 50px;
     width: 100%;
-    background-color: rgb(10, 104, 144);
+    background-color: rgb(0, 0, 0);
   }
   &__menu {
     list-style: none;
@@ -17,7 +17,7 @@
     }
     & li {
       & a {
-        color: black;
+        color: rgb(245, 240, 240);
         text-decoration: none;
         text-transform: uppercase;
         transition: all 0.3s ease-in-out;
@@ -27,7 +27,7 @@
           text-shadow: red 2px 2px 4px;
         }
         &.active {
-          color: rgb(255, 0, 217);
+          color: rgb(255, 98, 0);
           text-shadow: red 2px 2px 4px;
         }
       }
