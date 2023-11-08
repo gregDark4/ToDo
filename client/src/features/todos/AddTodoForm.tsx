@@ -64,7 +64,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
           />
         </label>
         <Button className="form-submit-button" onClick={onHandleTodoAdd}>
-          Add
+          Create
         </Button>
         <br />
       </form>
