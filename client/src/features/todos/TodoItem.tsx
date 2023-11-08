@@ -152,12 +152,12 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         marginBottom: '20px',
       }}
     >
-      <div>
+      <div className='allElemOfTask'>
         <Button
           className="btn"
           onClick={() => onHandleChange(todo.id)}
           type="button"
-          id="btnEditTask"
+          id="btnFinishTask"
           icon={<StarOutlined />}
         />
         {/* <label>
