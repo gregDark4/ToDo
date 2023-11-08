@@ -80,6 +80,8 @@ body {
 .game__container {
   border-radius: 8px;
   border-color: #45a049;
+  height: 90px;
+  margin-top: 10px;
 }
 
 .form-container {
@@ -104,12 +106,19 @@ body {
 }
 #btnEditTask:hover{
   color:#ffffff;
-  transform:scale(1.8)
+  transform:scale(1.8);
 }
 #btnDeleteTask:hover{
-  color:#f70505;
+  color:#be4f4a;
   transform:scale(1.8)
 }
 #btnShowCalendar:hover{
   color:#ffffff;
   transform:scale(1.8)}
+
+  .game__title{
+    margin-left: 20px;
+    margin-top: 5000px;
+  }
+
+ 
