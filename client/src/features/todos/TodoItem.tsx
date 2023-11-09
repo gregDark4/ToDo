@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -138,8 +140,8 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   //   setPrior(level_id);
   // };
 
-  const handleTimeLineClick = async (todo: Todo): Promise<void> => {
-    await onHandleTime(todo.id);
+  const handleTimeLineClick = async (tod: Todo): Promise<void> => {
+    await onHandleTime(tod.id);
     setCalendar((prev) => !prev);
   };
 
@@ -245,7 +247,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         </Button>
       )}
     </div>
-  );
+  ); 
 };
 
 export default TodoItem;
