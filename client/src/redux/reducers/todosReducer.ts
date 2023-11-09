@@ -31,6 +31,7 @@ const todosReducer = (state: TodosState = initState, action: Action): TodosState
         todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
     case 'todos/edit':
+      console.log(action.payload);
       return {
         ...state,
         todos: state.todos.map((todo) =>
