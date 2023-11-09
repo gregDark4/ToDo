@@ -39,7 +39,7 @@ const SignUp = (): JSX.Element => {
       <h1>SignUp</h1>
       <div>
         <Form style={{ display: 'flex', flexDirection: 'column' }}>
-          <label htmlFor="a">
+          <label id='r' htmlFor="a">
             Email
             <Input
               value={email}
@@ -48,7 +48,7 @@ const SignUp = (): JSX.Element => {
               type="text"
             />
           </label>
-          <label htmlFor="d">
+          <label id='r' htmlFor="d">
             Password
             <Input
               value={password}
@@ -57,7 +57,8 @@ const SignUp = (): JSX.Element => {
               type="text"
             />
           </label>
-          <Button type="primary" onClick={onHandlePlayerAdd}>
+          <br/>
+          <Button className='form-submit-button' onClick={onHandlePlayerAdd}>
             Submit
           </Button>
         </Form>

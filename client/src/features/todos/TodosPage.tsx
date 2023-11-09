@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux';
 import { Button, Select } from 'antd';
 import type { RootState } from '../../redux/store';
 import TodoItem from './TodoItem';
+import { useTheme } from '../../hooks/use_theme';
 import AddTodoForm from './AddTodoForm';
 
 const { Option } = Select;
 
 const TodosPage = (): JSX.Element => {
   const [filter, setFilter] = useState('all');
+  // const { theme, setTheme } = useTheme();
 
   const [showBtn, setShowBtn] = useState(false);
   const todos = useSelector((store: RootState) => store.todos.todos);
@@ -23,7 +25,6 @@ const TodosPage = (): JSX.Element => {
   };
   const filteredTodos =
     filter === 'all' ? todos : todos.filter((todo) => todo.status === (filter === 'completed'));
-
   return (
     <div className="todo__container">
       <div>
@@ -40,7 +41,7 @@ const TodosPage = (): JSX.Element => {
         </div>
         <br />
         <div>
-          <b>Show</b>
+          <b>Sort by</b>
           <Select defaultValue="all" onChange={handleFilter} className="filtr_select">
             <Option value="all">all</Option>
             <Option value="completed">completed</Option>

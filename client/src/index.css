@@ -1,0 +1,19 @@
+.App{
+    background-color: var(--background-color);
+}
+
+.game__container {
+    background-color: var(--background-color);
+}
+
+.todo__container{
+    background-color: var(--background-color);
+}
+
+.body{
+    background-color: var(--background-color);
+}
+
+.main__container{
+    background-color: var(--background-color);
+}

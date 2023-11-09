@@ -11,11 +11,14 @@ import SignUp from '../features/auth/SignUp';
 import TodosPage from '../features/todos/TodosPage';
 import { useAppDispatch } from '../redux/store';
 import MainPage from '../features/main/MainPage';
+import { useTheme } from '../hooks/use_theme';
 // import Memo from '../Samples/Memo/Memo';
 // import CallBe4ik from '../Samples/useCallback/Callbe4ik';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     api.fetchTodos().then((data) => dispatch({ type: 'todos/load', payload: data }));
