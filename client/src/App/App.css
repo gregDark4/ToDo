@@ -42,7 +42,7 @@ body {
 
 .form-container {
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
   flex-direction: column;
   margin-top: 20px;
 }
@@ -80,13 +80,8 @@ body {
 .game__container {
   border-radius: 8px;
   border-color: #45a049;
-  height: 90px;
   margin-top: 10px;
 }
-
-.form-container {
-}
-
 .btn {
   text-align: end;
 }
@@ -104,21 +99,97 @@ body {
   border-radius: 9px;
   cursor: pointer;
 }
-#btnEditTask:hover{
-  color:#ffffff;
-  transform:scale(1.8);
+#btnEditTask:hover {
+  color: #ffffff;
+  transform: scale(1.8);
 }
-#btnDeleteTask:hover{
-  color:#be4f4a;
-  transform:scale(1.8)
+#btnDeleteTask:hover {
+  color: #be4f4a;
+  transform: scale(1.8);
 }
-#btnShowCalendar:hover{
-  color:#ffffff;
-  transform:scale(1.8)}
+#btnShowCalendar:hover {
+  color: #ffffff;
+  transform: scale(1.8);
+}
 
-  .game__title{
-    margin-left: 20px;
-    margin-top: 5000px;
-  }
+.game__title {
+  margin-left: 20px;
+  margin-top: 5000px;
+}
 
- 
+/* body {
+  background-color: #171717; 
+  margin: 0;
+  padding: 0;
+  font-family: 'Roblox', sans-serif; 
+}
+
+.App {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #373737;
+}
+
+.some {
+  color: white;
+}
+
+.back {
+  color: white;
+}
+
+.todo__container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+  color: #ffffff;
+}
+
+.game__container {
+  border-radius: 8px;
+  border-color: #45a049;
+  margin-top: 10px;
+  background-color: #7e7e7e;
+}
+
+.game__title {
+  margin-left: 20px;
+  color: #ffffff;
+}
+
+.btn {
+  text-align: end;
+}
+.form-submit-button:hover {
+  background-color: #d44b11;
+}
+
+.gsl {
+  text-align: center;
+}
+
+#add_task_btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+}
+#btnEditTask:hover {
+  color: #ffffff;
+  transform: scale(1.8);
+}
+#btnDeleteTask:hover {
+  color: #be4f4a;
+  transform: scale(1.8);
+}
+#btnShowCalendar:hover {
+  color: #ffffff;
+  transform: scale(1.8);
+}  */

@@ -12,7 +12,7 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
   const dispatch = useAppDispatch();
 
   const onHandleTodoAdd = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
-    // e.preventDefault();
+    e.preventDefault();
     if (title.trim() === '' || description.trim() === '') {
       return;
     }
