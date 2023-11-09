@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './modal.css';
+import { Input, Button } from 'antd';
 import type { Todo, TodoID } from '../todos/types';
 import { useAppDispatch } from '../../redux/store';
-import { Input, Button } from 'antd';
 
 const Modal = ({
   todo,
@@ -31,7 +31,6 @@ const Modal = ({
     setDescription('');
   };
   return (
-  
     <div className="conteiner">
       <Input value={title} onChange={(e) => setTitle(e.target.value)} type="text" />
       <Input value={description} onChange={(e) => setDescription(e.target.value)} type="text" />
@@ -42,7 +41,6 @@ const Modal = ({
         X
       </Button>
     </div>
-    
   );
 };
 

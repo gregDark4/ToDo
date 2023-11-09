@@ -9,7 +9,7 @@ import {
   ClockCircleOutlined,
   StarOutlined,
 } from '@ant-design/icons';
-import { Button, Select } from 'antd';
+import { Button } from 'antd';
 import type { RootState } from '../../redux/store';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -133,9 +133,9 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       .catch(console.log);
   };
 
-  const handlePrior = (level_id: string): void => {
-    setPrior(level_id);
-  };
+  // const handlePrior = (level_id: string): void => {
+  //   setPrior(level_id);
+  // };
 
   const handleTimeLineClick = async (todo: Todo): Promise<void> => {
     await onHandleTime(todo.id);
@@ -152,13 +152,13 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         marginBottom: '20px',
       }}
     >
-      <div className='allElemOfTask'>
+      <div className="allElemOfTask">
         <Button
           className="btn"
           onClick={() => onHandleChange(todo.id)}
           type="button"
           id="btnFinishTask"
-          icon={<StarOutlined />}
+          icon={<StarOutlined style={{ color: todo.status ? 'yellow' : 'initial' }} />}
         />
         {/* <label>
            <input
@@ -205,20 +205,6 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       <div className="modalpj">
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
-      {/* <select value={prior} onChange={(e) => setPrior(e.target.value)}>
-        <option value="all" onClick={() => handlePrior('all')}>
-          all
-        </option>
-        <option value="1" onClick={() => handlePrior('1')}>
-          low
-        </option>
-        <option value="2" onClick={() => handlePrior('2')}>
-          middle
-        </option>
-        <option value="3" onClick={() => handlePrior('3')}>
-          high
-        </option>
-      </select> */}
       <Button
         onClick={() => onHandleLevel(todo.id, prior)}
         type="button"
