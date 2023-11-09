@@ -43,6 +43,11 @@ const NavBar = (): JSX.Element => {
             </>
           )}
         </ul>
+        <div className='themeBtn'>
+
+          <button>ligth</button>
+          <button>dark</button>
+        </div>
       </div>
       <Outlet />
     </>

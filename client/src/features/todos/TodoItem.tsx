@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons';
 import { Button } from 'antd';
 import type { RootState } from '../../redux/store';
+import { useTheme } from '../../hooks/use_theme';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useAppDispatch } from '../../redux/store';
@@ -144,24 +145,18 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     setCalendar((prev) => !prev);
   };
 
+  // const { theme, setTheme } = useTheme();
   return (
     <div
       className="game__container"
-      style={{
-        borderRadius: '8px',
-        background: 'rgba(33,33,36, 0.6',
-        padding: '40px',
-        marginBottom: '20px',
-      }}
+      // style={{
+      //   borderRadius: '8px',
+      //   background: 'rgba(33,33,36, 0.6',
+      //   padding: '40px',
+      //   marginBottom: '20px',
+      // }}
     >
       <div className="allElemOfTask">
-        <Button
-          className="btn"
-          onClick={() => onHandleChange(todo.id)}
-          type="text"
-          id="btnFinishTask"
-          icon={<StarOutlined style={{ color: todo.status ? 'yellow' : 'initial' }} />}
-        />
         {/* <label>
            <input
              className="btn"
@@ -170,38 +165,59 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
              onClick={() => onHandleChange(todo.id)}
            />
          </label> */}
-        <b className="game__title" onClick={() => setShow(!show)}>
-          {todo.title}
-        </b>
-        <Button
-          className="btn"
-          onClick={() => setModalActive((prev) => !prev)}
-          type="text"
-          id="btnEditTask"
-          icon={<EditOutlined />}
-        />
-        <Button
-          onClick={() => onHandleDelete(todo.id)}
-          type="text"
-          id="btnDeleteTask"
-          icon={<CloseSquareOutlined />}
-        />
-        {show && <div id="description">{todo.description}</div>}
         <div>
-          {calendar ? (
-            <>
-              {' '}
-              <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
-            </>
-          ) : (
-            <Button
-              type="text"
-              id="btnShowCalendar"
-              icon={<ScheduleOutlined />}
-              onClick={() => setCalendar((prev) => !prev)}
-            />
-          )}
+          <Button
+            className="btn"
+            onClick={() => onHandleChange(todo.id)}
+            type="button"
+            id="btnFinishTask"
+            icon={<StarOutlined style={{ color: todo.status ? '#f1d222' : 'initial' }} />}
+          />
         </div>
+        <div className="title">
+          {' '}
+          <b className="game__title" onClick={() => setShow(!show)}>
+            {todo.title}
+          </b>
+        </div>
+        <div id="editDel">
+          <div>
+            <Button
+              className="btn"
+              onClick={() => setModalActive((prev) => !prev)}
+              type="button"
+              id="btnEditTask"
+              icon={<EditOutlined />}
+            />
+          </div>
+          <div>
+            <Button
+              onClick={() => onHandleDelete(todo.id)}
+              type="button"
+              id="btnDeleteTask"
+              icon={<CloseSquareOutlined />}
+            />
+          </div>
+        </div>
+      </div>
+      <div id='descript'>
+      {show && <div id="description">{todo.description}</div>}
+      </div>
+      
+      <div>
+        {calendar ? (
+          <>
+            {' '}
+            <Calendar date={time} onChange={(date) => setTime(date)} minDate={new Date()} />
+          </>
+        ) : (
+          <Button
+            type="button"
+            id="btnShowCalendar"
+            icon={<ScheduleOutlined />}
+            onClick={() => setCalendar((prev) => !prev)}
+          />
+        )}
       </div>
       <br />
       <div className="modalpj">
@@ -209,7 +225,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       </div>
       <Button
         onClick={() => onHandleLevel(todo.id, prior)}
-        type="text"
+        type="button"
         icon={<ClockCircleOutlined />}
         style={{
           backgroundColor:
@@ -222,12 +238,16 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         }}
       />
       {calendar && (
-        <Button type="default" onClick={() => handleTimeLineClick(todo)}>
+        <Button
+          type="default"
+          className="form-submit-button"
+          onClick={() => handleTimeLineClick(todo)}
+        >
           Set deadline
         </Button>
       )}
     </div>
-  );
+  ); 
 };
 
 export default TodoItem;

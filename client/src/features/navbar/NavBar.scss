@@ -24,11 +24,11 @@
         &:hover {
           cursor: pointer;
           color: rgb(255, 255, 255);
-          text-shadow: red 2px 2px 4px;
+          text-shadow: #f1d222 2px 2px 4px;
         }
         &.active {
-          color: rgb(255, 98, 0);
-          text-shadow: red 2px 2px 4px;
+          color: #f1d222;
+          text-shadow: #f1d222 2px 2px 4px;
         }
       }
     }
