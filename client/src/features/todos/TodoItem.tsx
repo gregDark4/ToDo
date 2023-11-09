@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -137,8 +139,8 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
   //   setPrior(level_id);
   // };
 
-  const handleTimeLineClick = async (todo: Todo): Promise<void> => {
-    await onHandleTime(todo.id);
+  const handleTimeLineClick = async (tod: Todo): Promise<void> => {
+    await onHandleTime(tod.id);
     setCalendar((prev) => !prev);
   };
 
@@ -156,7 +158,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         <Button
           className="btn"
           onClick={() => onHandleChange(todo.id)}
-          type="button"
+          type="text"
           id="btnFinishTask"
           icon={<StarOutlined style={{ color: todo.status ? 'yellow' : 'initial' }} />}
         />
@@ -174,13 +176,13 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         <Button
           className="btn"
           onClick={() => setModalActive((prev) => !prev)}
-          type="button"
+          type="text"
           id="btnEditTask"
           icon={<EditOutlined />}
         />
         <Button
           onClick={() => onHandleDelete(todo.id)}
-          type="button"
+          type="text"
           id="btnDeleteTask"
           icon={<CloseSquareOutlined />}
         />
@@ -193,7 +195,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
             </>
           ) : (
             <Button
-              type="button"
+              type="text"
               id="btnShowCalendar"
               icon={<ScheduleOutlined />}
               onClick={() => setCalendar((prev) => !prev)}
@@ -207,7 +209,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       </div>
       <Button
         onClick={() => onHandleLevel(todo.id, prior)}
-        type="button"
+        type="text"
         icon={<ClockCircleOutlined />}
         style={{
           backgroundColor:
