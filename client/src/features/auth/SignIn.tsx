@@ -37,9 +37,9 @@ const SignIn = (): JSX.Element => {
   return (
     <>
       <h1>SignIn</h1>
-      <div className='regLog'>
+      <div className="regLog">
         <Form style={{ display: 'flex', flexDirection: 'column' }}>
-          <label id='r' htmlFor="a">
+          <label id="r" htmlFor="a">
             Email
             <Input
               value={email}
@@ -48,7 +48,7 @@ const SignIn = (): JSX.Element => {
               type="text"
             />
           </label>
-          <label id='r' htmlFor="d">
+          <label id="r" htmlFor="d">
             Password
             <Input
               value={password}
@@ -58,7 +58,7 @@ const SignIn = (): JSX.Element => {
             />
           </label>
           <br />
-          <Button className='form-submit-button' onClick={onHandlePlayerAdd}>
+          <Button className="form-submit-button" onClick={onHandlePlayerAdd}>
             Submit
           </Button>
         </Form>

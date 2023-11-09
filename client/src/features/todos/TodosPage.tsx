@@ -28,20 +28,20 @@ const TodosPage = (): JSX.Element => {
   return (
     <div className="todo__container">
       <div>
-        <div>
+        <div id='divAddTask'>
           {showBtn ? (
             <div id="add_form">
               <AddTodoForm setShowBtn={setShowBtn} />
             </div>
           ) : (
-            <Button type="primary" id="add_task_btn" onClick={() => setShowBtn((prev) => !prev)}>
+            <Button className='form-submit-button' onClick={() => setShowBtn((prev) => !prev)}>
               +Add New Task
             </Button>
           )}
         </div>
         <br />
-        <div>
-          <b>Sort by</b>
+        <div className='selectDiv'>
+          <b className='selectDiv'>Sort by</b>
           <Select defaultValue="all" onChange={handleFilter} className="filtr_select">
             <Option value="all">all</Option>
             <Option value="completed">completed</Option>

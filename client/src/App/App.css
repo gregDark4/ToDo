@@ -4,12 +4,34 @@
   font-weight: 700;
 }
 
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100vw;
+}
+.nav__menu {
+  display: flex;
+  align-items: center;
+}
+.themeBtn {
+  min-width: 100px;
+  margin-right: 1vw;
+}
+.stub {
+  margin-left: 50px;
+  min-width: 100px;
+}
+
 body {
   /* background-color: rgb(250, 251, 251); */
   margin: 0;
   padding: 0;
   font-family: 'Roblox';
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
+}
+
+#divAddTask {
+  margin-top: 30px;
 }
 
 .App {
@@ -18,15 +40,9 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+/* color: #ffffff; */
 }
 
-.some {
-  color: white;
-}
-
-.back {
-  color: white;
-}
 
 .todo__container {
   display: flex;
@@ -34,7 +50,9 @@ body {
   flex-direction: column;
   text-align: center;
 }
-
+.filtr_select {
+  width: 105px;
+}
 .todo_quest {
   display: flex;
   justify-content: center;
@@ -116,12 +134,13 @@ body {
   transform: scale(1.8);
 }
 
-#btnFinishTask {
+ #btnFinishTask {
   /* position:static;
-display: flex; */
+display: flex;  */
   margin-right: 20px;
   /* margin-top: 100px; */
-}
+} 
+
 
 .allElemOfTask {
   display: flex;
@@ -141,149 +160,89 @@ display: flex; */
 /* _____________dark theme________________*/
 html[data-theme='dark'] {
   background-color: #212124;
-}
-
-#r {
-  color: #ffffff;
-}
-.App {
-  color: #ffffff;
-}
-.game__container {
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.498);
-  padding: 40px;
-  margin-bottom: 20px;
-  color: #000000;
-}
-
-@keyframes rainbow-animation {
-  to {
-    filter: hue-rotate(1deg);
+  .nav__container {
+    box-shadow: 5px 5px 10px #f1d222;
   }
-  from {
-    filter: hue-rotate(360deg);
+  
+  #r {
+    color: #ffffff;
   }
-}
-
-#add_task_btn {
-  background-color: #f1d222;
-  color: #000000;
-  animation: rainbow-animation 5s linear infinite;
-}
-
-.form-submit-button {
-  background-color: #f1d222;
-  color: #000000;
-  transition: box-shadow 1s;
-  animation: rainbow-animation 5s linear infinite;
-}
-.form-submit-button:hover {
-  background-color: #000000;
-  box-shadow: 0px 0px 30px 0px #f1d222;
+  .App {
+    color: #ffffff;
+  }
+  .game__container {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.498);
+    padding: 40px;
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+  }
+  
+  .themeButtons {
+    background-color: rgba(255, 255, 255, 0.498);
+  }
+  
+  #add_task_btn {
+    background-color: #f1d222;
+    color: #000000;
+  }
+  
+  .form-submit-button {
+    background-color: #f1d222;
+    color: #000000;
+    transition: box-shadow 1s;
+  }
+  .form-submit-button:hover {
+    background-color: #000000;
+    box-shadow: 0px 0px 30px 0px #f1d222;
+  }
+  .selectDiv {
+    color: #ffffff;
+  }
+  .tt {
+    color: #ffffff;
+  }
 }
 
 /* ______________light theme_______________*/
 html[data-theme='light'] {
   background-color: #ffffff;
+  
+  #r {
+    color: #000000;
+  }
+  .App {
+    color: #000000;
+  }
+  .game__container {
+    border-radius: 8px;
+    background-color: #78787a;
+    padding: 40px;
+    margin-bottom: 20px;
+  }
+  .selectDiv {
+    color: #000000;
+  }
+  .title {
+    max-width: 200px;
+    word-wrap: break-word;
+    font-size: larger;
+  }
+  #descript {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #description {
+    max-width: 200px;
+    word-wrap: break-word;
+    font-size: medium;
+  }
+  .game__container {
+    border-radius: 8px;
+    background-color: #78787a; 
+    padding: 40px;
+    margin-bottom:20px;
+    color: #000000;}
 }
 
-.game__container {
-  border-radius: 8px;
-  background-color: #78787a;
-  padding: 40px;
-  margin-bottom: 20px;
-}
-
-.title {
-  max-width: 200px;
-  word-wrap: break-word;
-  font-size: larger;
-}
-#descript {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#description {
-  max-width: 200px;
-  word-wrap: break-word;
-  font-size: medium;
-}
-
-/* body {
-  background-color: #171717;
-  margin: 0;
-  padding: 0;
-  font-family: 'Roblox', sans-serif;
-}
-
-.App {
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-color: #373737;
-}
-
-.some {
-  color: white;
-}
-
-.back {
-  color: white;
-}
-
-.todo__container {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  text-align: center;
-  color: #ffffff;
-}
-
-.game__container {
-  border-radius: 8px;
-  border-color: #45a049;
-  margin-top: 10px;
-  background-color: #7e7e7e;
-}
-
-.game__title {
-  margin-left: 20px;
-  color: #ffffff;
-}
-
-.btn {
-  text-align: end;
-}
-.form-submit-button:hover {
-  background-color: #d44b11;
-}
-
-.gsl {
-  text-align: center;
-}
-
-#add_task_btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #000000;
-  color: white;
-  border: none;
-  border-radius: 9px;
-  cursor: pointer;
-}
-#btnEditTask:hover {
-  color: #ffffff;
-  transform: scale(1.8);
-}
-#btnDeleteTask:hover {
-  color: #be4f4a;
-  transform: scale(1.8);
-}
-#btnShowCalendar:hover {
-  color: #ffffff;
-  transform: scale(1.8);
-} */
