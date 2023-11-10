@@ -43,7 +43,9 @@ const Modal = ({
     });
     const data = await res.json();
     console.log(data);
-    dispatch({ type: 'todos/edit', payload: id });
+    dispatch({ type: 'todos/edit', payload: data });
+    setTitle('');
+    setDescription('');
   };
 
   return (
