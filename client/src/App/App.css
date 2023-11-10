@@ -266,3 +266,49 @@ html[data-theme='light'] {
     color: #000000;
   }
 }
+
+@media (max-width: 767px) {
+  .nav__container {
+    flex-direction: column;
+  }
+  .nav__menu {
+    animation: none;
+  }
+  .themeBtn {
+    margin: 10px 0;
+  }
+  .stub {
+    margin: 10px 0;
+  }
+  /* #divAddTask {
+    margin-top: 20px;
+  } */
+  .todo__container {
+    flex-direction: column;
+  }
+  .filtr_select {
+    margin: 10px 0;
+  }
+  .form-container {
+    margin-top: 10px;
+  }
+  .form-label {
+    font-size: 16px;
+  }
+  .form-input {
+    width: 100%;
+  }
+  .form-submit-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .btn {
+    text-align: center;
+  }
+  #add_task_btn {
+    margin-top: 20px;
+  }
+  #btnFinishTask {
+    margin-right: 0;
+  }
+}
