@@ -15,21 +15,37 @@ const Modal = ({
   const [description, setDescription] = useState(todo.description);
   const dispatch = useAppDispatch();
 
+  // const onHandleEdit = async (id: TodoID): Promise<void> => {
+  //   const res = await fetch(`/api/edit/${id}`, {
+  //     method: 'put',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ title, description }),
+  //   });
+  //   const data: { message: string } = await res.json();
+  //   if (data.message === 'success') {
+  //     dispatch({ type: 'todos/edit', payload: id });
+  //   }
+  //   setTitle('');
+  //   setDescription('');
+  // };
   const onHandleEdit = async (id: TodoID): Promise<void> => {
-    const res = await fetch(`/api/edit/${id}`, {
+    const res = await fetch(`api/edit/${id}`, {
       method: 'put',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ title, description }),
+      body: JSON.stringify({
+        title,
+        description,
+      }),
     });
-    const data: { message: string } = await res.json();
-    if (data.message === 'success') {
-      dispatch({ type: 'todos/edit', payload: id });
-    }
-    setTitle('');
-    setDescription('');
+    const data = await res.json();
+    console.log(data);
+    dispatch({ type: 'todos/edit', payload: id });
   };
+
   return (
     <div className="conteiner">
       <Input value={title} onChange={(e) => setTitle(e.target.value)} type="text" />

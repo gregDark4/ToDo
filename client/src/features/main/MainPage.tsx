@@ -1,9 +1,7 @@
 import React from 'react';
 import './MainPage.scss';
-import { useTheme } from '../../hooks/use_theme';
 
 const MainPage = (): JSX.Element => {
-  // const { theme, setTheme } = useTheme();
   return (
     <div className="main__container">
       <video autoPlay loop muted className="video__background">
