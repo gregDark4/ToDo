@@ -34,8 +34,8 @@ const todosReducer = (state: TodosState = initState, action: Action): TodosState
       return {
         ...state,
         todos: state.todos.map((todo) =>
-          todo.id === action.payload
-            ? { ...todo, title: todo.title, description: todo.description }
+          todo.id === action.payload.id
+            ? { ...todo, title: action.payload.title, description: action.payload.description }
             : todo,
         ),
       };
