@@ -70,7 +70,7 @@ const NavBar = (): JSX.Element => {
         <div className="themeBtn">
           <ButtonGroup>
             <Button className="themeButtons" onClick={handleLightThemeClick}>
-              ligth
+              light
             </Button>
             <Button className="themeButtons" onClick={handleDarkThemeClick}>
               dark

@@ -12,6 +12,7 @@
 .nav__menu {
   display: flex;
   align-items: center;
+  animation: rainbow-animation 6s linear infinite;
 }
 .themeBtn {
   min-width: 100px;
@@ -84,12 +85,12 @@ body {
   border: none;
   border-radius: 9px;
   cursor: pointer;
-  animation: rainbow-animation 5s linear infinite;
+  animation: rainbow-animation 6s linear infinite;
 }
 
 .form-submit-button:hover {
   background-color: #d44b11;
-  animation: rainbow-animation 5s linear infinite;
+  animation: rainbow-animation 6s linear infinite;
 }
 
 .rr {
@@ -107,7 +108,7 @@ body {
 }
 .btn {
   text-align: end;
-  animation: rainbow-animation 5s linear infinite;
+  animation: rainbow-animation 6s linear infinite;
 }
 
 .gsl {
@@ -122,7 +123,7 @@ body {
   border: none;
   border-radius: 9px;
   cursor: pointer;
-  animation: rainbow-animation 5s linear infinite;
+  animation: rainbow-animation 6s linear infinite;
 }
 #btnEditTask:hover {
   color: #ffffff;
@@ -141,7 +142,7 @@ body {
   /* position:static;
 display: flex;  */
   margin-right: 20px;
-  animation: rainbow-animation 5s linear infinite;
+  animation: rainbow-animation 3s linear infinite;
   /* margin-top: 100px; */
 }
 
@@ -203,18 +204,23 @@ html[data-theme='dark'] {
     background-color: #f1d222;
     color: #000000;
     transition: box-shadow 1s;
-    animation: rainbow-animation 5s linear infinite;
+    animation: rainbow-animation 6s linear infinite;
   }
   .form-submit-button:hover {
     background-color: #000000;
     box-shadow: 0px 0px 30px 0px #f1d222;
-    animation: rainbow-animation 5s linear infinite;
+    animation: rainbow-animation 6s linear infinite;
   }
   .selectDiv {
     color: #ffffff;
   }
   .tt {
     color: #ffffff;
+  }
+  .title {
+    max-width: 200px;
+    word-wrap: break-word;
+    font-size: larger;
   }
 }
 
