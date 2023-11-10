@@ -18,7 +18,7 @@ const TodosPage = (): JSX.Element => {
   const sortedTodos = todoss.sort(
     (todoA, todoB) => (todoB.level_id as any) - (todoA.level_id as any),
   );
-  //asd any
+  // asd any
 
   const handleFilter = (status: string): void => {
     setFilter(status);
@@ -35,7 +35,7 @@ const TodosPage = (): JSX.Element => {
             </div>
           ) : (
             <Button className="form-submit-button" onClick={() => setShowBtn((prev) => !prev)}>
-              +Add New Task
+              New Task
             </Button>
           )}
         </div>
