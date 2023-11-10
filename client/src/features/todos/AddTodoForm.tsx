@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState } from 'react';
@@ -5,7 +6,7 @@ import { Button } from 'antd';
 import type { Todo } from './types';
 import { useAppDispatch } from '../../redux/store';
 
-const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): JSX.Element => {
+const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: any) => void }): JSX.Element => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -29,14 +30,12 @@ const AddTodoForm = ({ setShowBtn }: { setShowBtn: (prev: boolean) => void }): J
         isData: new Date(),
       }),
     });
-    console.log(res);
 
     const data: Todo = await res.json();
-    console.log(data);
     dispatch({ type: 'todos/add', payload: data });
     setTitle('');
     setDescription('');
-    setShowBtn((prev) => !prev);
+    setShowBtn((prev: boolean) => !prev);
   };
   return (
     <div>

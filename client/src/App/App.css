@@ -40,9 +40,8 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-/* color: #ffffff; */
+  /* color: #ffffff; */
 }
-
 
 .todo__container {
   display: flex;
@@ -85,10 +84,12 @@ body {
   border: none;
   border-radius: 9px;
   cursor: pointer;
+  animation: rainbow-animation 5s linear infinite;
 }
 
 .form-submit-button:hover {
   background-color: #d44b11;
+  animation: rainbow-animation 5s linear infinite;
 }
 
 .rr {
@@ -106,6 +107,7 @@ body {
 }
 .btn {
   text-align: end;
+  animation: rainbow-animation 5s linear infinite;
 }
 
 .gsl {
@@ -120,6 +122,7 @@ body {
   border: none;
   border-radius: 9px;
   cursor: pointer;
+  animation: rainbow-animation 5s linear infinite;
 }
 #btnEditTask:hover {
   color: #ffffff;
@@ -134,13 +137,22 @@ body {
   transform: scale(1.8);
 }
 
- #btnFinishTask {
+#btnFinishTask {
   /* position:static;
 display: flex;  */
   margin-right: 20px;
+  animation: rainbow-animation 5s linear infinite;
   /* margin-top: 100px; */
-} 
+}
 
+@keyframes rainbow-animation {
+  to {
+    filter: hue-rotate(1deg);
+  }
+  from {
+    filter: hue-rotate(360deg);
+  }
+}
 
 .allElemOfTask {
   display: flex;
@@ -163,7 +175,7 @@ html[data-theme='dark'] {
   .nav__container {
     box-shadow: 5px 5px 10px #f1d222;
   }
-  
+
   #r {
     color: #ffffff;
   }
@@ -177,24 +189,26 @@ html[data-theme='dark'] {
     margin-bottom: 20px;
     color: rgb(0, 0, 0);
   }
-  
+
   .themeButtons {
     background-color: rgba(255, 255, 255, 0.498);
   }
-  
+
   #add_task_btn {
     background-color: #f1d222;
     color: #000000;
   }
-  
+
   .form-submit-button {
     background-color: #f1d222;
     color: #000000;
     transition: box-shadow 1s;
+    animation: rainbow-animation 5s linear infinite;
   }
   .form-submit-button:hover {
     background-color: #000000;
     box-shadow: 0px 0px 30px 0px #f1d222;
+    animation: rainbow-animation 5s linear infinite;
   }
   .selectDiv {
     color: #ffffff;
@@ -207,7 +221,7 @@ html[data-theme='dark'] {
 /* ______________light theme_______________*/
 html[data-theme='light'] {
   background-color: #ffffff;
-  
+
   #r {
     color: #000000;
   }
@@ -240,9 +254,9 @@ html[data-theme='light'] {
   }
   .game__container {
     border-radius: 8px;
-    background-color: #78787a; 
+    background-color: #78787a;
     padding: 40px;
-    margin-bottom:20px;
-    color: #000000;}
+    margin-bottom: 20px;
+    color: #000000;
+  }
 }
-

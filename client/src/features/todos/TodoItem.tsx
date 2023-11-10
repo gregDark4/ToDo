@@ -1,8 +1,18 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-empty */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Calendar } from 'react-date-range';
 import {
   EditOutlined,
@@ -12,8 +22,6 @@ import {
   StarOutlined,
 } from '@ant-design/icons';
 import { Button } from 'antd';
-import type { RootState } from '../../redux/store';
-import { useTheme } from '../../hooks/use_theme';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useAppDispatch } from '../../redux/store';
@@ -32,8 +40,15 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const user = useSelector((store: RootState) => store.auth.auth);
+  // const user = useSelector((store: RootState) => store.auth.auth);
   const dispatch = useAppDispatch();
+  if (process.env.NODE_ENV === 'development') {
+    console.log(selectedDate);
+  }
+  useEffect(() => {
+    if (selectedDate) {
+    }
+  }, [selectedDate]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -76,12 +91,25 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     }
   };
 
-  const handleTime = (selectedDate) => {
-    const createdDate = new Date(todo.createdAt);
-    const timeDiff = selectedDate.getTime() - createdDate.getTime();
-    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-    setDeadline(daysDiff);
-  };
+  // const handleTime = (selectedDate: any) => {
+  //   const createdDate = new Date(todo.createdAt);
+  //   const timeDiff = selectedDate.getTime() - createdDate.getTime();
+  //   const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+  //   setDeadline(daysDiff);
+  // };
+  // console.log(handleTime);
+  const memoizedHandleTime = useMemo(() => {
+    return (selectedDate: any) => {
+      const createdDate = new Date(todo.createdAt);
+      const timeDiff = selectedDate.getTime() - createdDate.getTime();
+      const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+      setDeadline(daysDiff);
+    };
+  }, [todo.createdAt, setDeadline]);
+
+  useEffect(() => {
+    memoizedHandleTime(new Date());
+  }, [memoizedHandleTime]);
 
   const saveStateToLocalStorage = (): void => {
     localStorage.setItem(`deadline_${todo.id}`, JSON.stringify(deadline));
@@ -93,7 +121,6 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
       setSelectedDate(new Date(savedDate));
     }
   };
-
   useEffect(() => {
     loadStateFromLocalStorage();
   }, []);
@@ -144,32 +171,14 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
     await onHandleTime(tod.id);
     setCalendar((prev) => !prev);
   };
-
-  // const { theme, setTheme } = useTheme();
   return (
-    <div
-      className="game__container"
-      // style={{
-      //   borderRadius: '8px',
-      //   background: 'rgba(33,33,36, 0.6',
-      //   padding: '40px',
-      //   marginBottom: '20px',
-      // }}
-    >
+    <div className="game__container">
       <div className="allElemOfTask">
-        {/* <label>
-           <input
-             className="btn"
-             type="checkbox"
-             checked={todo.status}
-             onClick={() => onHandleChange(todo.id)}
-           />
-         </label> */}
         <div>
           <Button
             className="btn"
             onClick={() => onHandleChange(todo.id)}
-            type="button"
+            type="text"
             id="btnFinishTask"
             icon={<StarOutlined style={{ color: todo.status ? '#f1d222' : 'initial' }} />}
           />
@@ -185,7 +194,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
             <Button
               className="btn"
               onClick={() => setModalActive((prev) => !prev)}
-              type="button"
+              type="text"
               id="btnEditTask"
               icon={<EditOutlined />}
             />
@@ -193,17 +202,15 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
           <div>
             <Button
               onClick={() => onHandleDelete(todo.id)}
-              type="button"
+              type="text"
               id="btnDeleteTask"
               icon={<CloseSquareOutlined />}
             />
           </div>
         </div>
       </div>
-      <div id='descript'>
-      {show && <div id="description">{todo.description}</div>}
-      </div>
-      
+      <div id="descript">{show && <div id="description">{todo.description}</div>}</div>
+
       <div>
         {calendar ? (
           <>
@@ -212,7 +219,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
           </>
         ) : (
           <Button
-            type="button"
+            type="text"
             id="btnShowCalendar"
             icon={<ScheduleOutlined />}
             onClick={() => setCalendar((prev) => !prev)}
@@ -224,8 +231,9 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         {modalActive && todo && <Modal setModalActive={setModalActive} todo={todo} />}
       </div>
       <Button
-        onClick={() => onHandleLevel(todo.id, prior)}
-        type="button"
+        onClick={() => onHandleLevel(todo.id)}
+        // prior
+        type="text"
         icon={<ClockCircleOutlined />}
         style={{
           backgroundColor:
@@ -247,7 +255,7 @@ const TodoItem = ({ todo }: { todo: Todo }): JSX.Element => {
         </Button>
       )}
     </div>
-  ); 
+  );
 };
 
 export default TodoItem;

@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-empty */
+import React, { useEffect } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './NavBar.scss';
@@ -12,11 +14,16 @@ const NavBar = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const { theme, setTheme } = useTheme();
+  useEffect(() => {
+    if (theme) {
+    }
+  }, [theme]);
+  //asd
 
-  const handleLightThemeClick = () => {
+  const handleLightThemeClick = (): void => {
     setTheme('light');
   };
-  const handleDarkThemeClick = () => {
+  const handleDarkThemeClick = (): void => {
     setTheme('dark');
   };
 
@@ -61,9 +68,13 @@ const NavBar = (): JSX.Element => {
           </ul>
         </div>
         <div className="themeBtn">
-          <ButtonGroup >
-            <Button className="themeButtons" onClick={handleLightThemeClick}>ligth</Button>
-            <Button className="themeButtons" onClick={handleDarkThemeClick}>dark</Button>
+          <ButtonGroup>
+            <Button className="themeButtons" onClick={handleLightThemeClick}>
+              ligth
+            </Button>
+            <Button className="themeButtons" onClick={handleDarkThemeClick}>
+              dark
+            </Button>
           </ButtonGroup>
         </div>
       </div>
